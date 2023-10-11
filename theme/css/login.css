@@ -1,0 +1,17 @@
+.log_p{
+    background-color: rgb(130, 138, 210);
+}
+.bg-login-image {
+    background: url(https://source.unsplash.com/K4mSJ7kc0As/600x800);
+    width: 500px;
+    height: 500px;
+    background-position: center;
+    background-size: cover;
+}
+.log{
+    width: 420px;
+    height: 500px;
+}
+.log_b{
+    background-color: aqua;
+}

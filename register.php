@@ -141,6 +141,12 @@
           $(".emailSandOtp").html('Please wait..');
           $(".sandOtp").attr('disabled', true);
 
+          let arr = {
+          activity: 'sand_otpEmail',
+          email_id: email_id
+        };
+        var request = JSON.stringify(arr);
+
           $.ajax({
           method: "POST",
           url: "controller/send_email_otp.php",
@@ -154,11 +160,11 @@
             console.log(request);
           },
         }).done(function(Response) {
-          $('#current_password').val('');
-          $('#new_password').val('');
-          $('#confirm_new_password').val('');
-          $('#password_change').modal('hide');
-          alert('Password Change Successfully Please login');
+          console.log(request);
+          // if(Response=='done'){
+          //   alert("abc");
+          // }
+          // alert('Mail OTP Send Please Check And Varify');
         }).fail(function(jqXHR, exception) {
           var msg = '';
           if (jqXHR.status === 0) {

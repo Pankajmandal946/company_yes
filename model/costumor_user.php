@@ -1,12 +1,12 @@
 <?php
 require_once '../config/DBConnection.php';
-
-class User_login {
-    public $user_login_id, $user_name,$user_email_id, $username, $password, $last_login_time, $new_password,$last_login_ip, $default_password_change, $password_change_time, $is_active, $created_by, $created_on, $updated_by, $updated_on, $table_name, $db, $conn;
+class Costumer_Userlogin {
+    public $user_login_id, $user_name,$user_email_id, $username, $password, $last_login_time, $new_password,$last_login_ip, $default_password_change, $password_change_time, $is_active,$login_account, $created_by, $created_on, $updated_by, $updated_on, $table_name, $db, $conn;
 
     function __construct(){
         $this->user_login_id = "";
-        $this->user_id = 0;
+        $this->user_name = "";
+        $this->user_email_id = "";
         $this->username = "";
         $this->password = "";
         $this->last_login_time = NULL;
@@ -14,27 +14,30 @@ class User_login {
         $this->default_password_change = 0;
         $this->password_change_time = NULL;
         $this->is_active = 1;
+        $this->login_account = 1;
         $this->created_by = 0;
         $this->updated_by = 0;
-        $this->table_name = "user_login";
+        $this->table_name = "customer_user_login";
         $this->db = new DBConnection();
         $this->conn = $this->db->connect();
     }
 
     function insert(){
         $data = [
-            'user_id'                     => $this->user_id,
-            'username'                    => $this->username,
-            'password'                    => $this->generate_password($this->password),
-            'last_login_time'             => $this->last_login_time,
-            'last_login_ip'               => $this->last_login_ip,
-            'default_password_change'     => $this->default_password_change,
-            'password_change_time'        => $this->password_change_time,
-            'is_active'                   => $this->is_active,
-            'created_by'                  => $this->created_by
+            'user_email_id'           => $this->user_email_id,
+            'user_name'               => $this->user_name,
+            'username'                => $this->username,
+            'password'                => $this->generate_password($this->password),
+            'last_login_time'         => $this->last_login_time,
+            'last_login_ip'           => $this->last_login_ip,
+            'default_password_change' => $this->default_password_change,
+            'password_change_time'    => $this->password_change_time,
+            'is_active'               => $this->is_active,
+            'login_account'           => $this->login_account,
+            'created_by'              => $this->created_by
         ];
         
-        $sql = "INSERT INTO ".$this->table_name." (user_id, username, password, last_login_time, last_login_ip, default_password_change, password_change_time, is_active, created_by) VALUES (:user_id, :username, :password, :last_login_time , :last_login_ip, :default_password_change, :password_change_time, :is_active, :created_by)";
+        $sql = "INSERT INTO ".$this->table_name." (user_email_id,user_name, username, password, last_login_time, last_login_ip, default_password_change, password_change_time, is_active, login_account, created_by) VALUES (:user_email_id,:user_name, :username, :password, :last_login_time , :last_login_ip, :default_password_change, :password_change_time, :is_active, :login_account, :created_by)";
         $stmt= $this->conn->prepare($sql);
         $stmt->execute($data);
         $stmt->closeCursor();
@@ -136,10 +139,10 @@ class User_login {
 
     function check() {
         $data = [
-            'user_id'   => $this->user_id,
+            'user_email_id'   => $this->user_email_id,
             'is_active'     => 1
         ];
-        $stmt = $this->conn->prepare("SELECT user_login_id FROM ".$this->table_name." WHERE user_id = :user_id AND is_active=:is_active");
+        $stmt = $this->conn->prepare("SELECT user_login_id FROM ".$this->table_name." WHERE user_email_id = :user_email_id AND is_active=:is_active");
         $stmt->execute($data);
         $count = $stmt->rowCount();
         $row = $stmt->fetch();
@@ -286,5 +289,28 @@ class User_login {
         return password_hash($this->password, PASSWORD_BCRYPT, ["cost"=>12]);
     }
 
+    function randomOTP() {
+        $alphabet = '0123456789';
+        $pass = array(); //remember to declare $pass as an array
+        $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+        for ($i = 0; $i < 6; $i++) {
+            $n = rand(0, $alphaLength);
+            $pass[] = $alphabet[$n];
+        }
+        return implode($pass); //turn the array into a string
+    }
+
 }
+
+// function randomOTP() {
+//     $alphabet = '0123456789';
+//     $pass = array(); //remember to declare $pass as an array
+//     $alphaLength = strlen($alphabet) - 1; //put the length -1 in cache
+//     for ($i = 0; $i < 6; $i++) {
+//         $n = rand(0, $alphaLength);
+//         $pass[] = $alphabet[$n];
+//     }
+//     return implode($pass); //turn the array into a string
+// }
+
 ?>

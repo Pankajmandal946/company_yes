@@ -55,8 +55,8 @@
 
           <div class="input-group mb-3">
             <input type="password" name="new_password" id="new_password" class="form-control" placeholder="Password">
-            <div class="input-group-append otpSend">
-              <div class="input-group-text emailSandOtp" style="color:red;">
+            <div class="input-group-append">
+              <div class="input-group-text">
                 <span class="fas fa-eye-slash pasword_show" style="color:red;" type="submit" ></span>
                 <span class="fas fa-eye pasword_hide" style="color:red; display:none;" type="submit" ></span>
               </div>
@@ -131,8 +131,8 @@
     $(document).ready(function() {
       // Send OTP Jquary Code
       $('.email_verify_otp').hide();
+      $('.success_text').hide();
       $("#send_otp").on("click", function(e) {
-        $('.error').text('').hide();
         var user_email_id = $.trim($("#user_email_id").val());
         if (user_email_id == "") {
           alert('Please enter your Email Id');
@@ -155,11 +155,13 @@
               //alert(theResponse);
               var obj = JSON.parse(theResponse);
               if (obj.success == true) {
+                $('.success').text('').show();
+                $('.success_text').show();
                 $('#randomOtp').val(obj.randomOtp);
                 $('#user_email_id').attr('disabled', true);
                 $('.emailSandOtp').hide();
                 $('.otpSend').html('<div class="input-group-append"><div class="input-group-text"><i class="fas fa-paper-plane" style="color:black;"></i></div></div>');
-                alert("Successfully Send Your Verification Code Please Confirm It!");
+                $('.success').html("Successfully Send Your Verification Code<br/> Please Confirm It!");
               } else {
                 $('.otpSend').html('<div class="input-group-text"><span class="fas fa-paper-plane" style="color:red;"></span></div>');
                 alert(obj.errors.error);
@@ -172,7 +174,7 @@
 
       // Verify OTP Jquary Code
       $("#verify_otp").on("click", function(e) {
-        $('.error').text('').hide();
+        $('.success_text').hide();
         var randomOtp = $('#randomOtp').val();
         var enter_otp = $.trim($("#enter_otp").val());
         if (enter_otp == "") {
@@ -193,12 +195,14 @@
               //alert(theResponse);
               var obj = JSON.parse(theResponse);
               if (obj.success == true) {
+                $('.success').text('').show();
+                $('.success_text').show();
                 $('#rendemotp').val(obj.rendemotp);
                 $('#enter_otp').attr('disabled', true);
                 $('.email_verify_otp').hide();
                 $('.emailSandOtp').hide();
                 $('.otpSend').html('<div class="input-group-append"><div class="input-group-text"><i class="fas fa-paper-plane" style="color:green;"></i></div></div>');
-                alert("Verification Successfully Completed!");
+                $('.success').html("Verification Successfully Completed!");
               } else {
                 $('.enterotp').html('<div class="input-group-text" style="color:red;"><span class="fas fa-paper-plane rptemail" style="color:red;"></span></div>');
                 alert(obj.errors.error);
@@ -276,11 +280,6 @@
       $(document).on('click', '#registerUser', function(e) {
         e.preventDefault();
         rendemotp = $('#rendemotp').val();
-        if(rendemotp == ''){
-          alert("Please Verify Your Email Id")
-        } else {
-          var email_id = $.trim($("#user_email_id").val());
-        }
         // console.log(rendemotp);return false;
         var email_id = $.trim($("#user_email_id").val());
         var name = $.trim($("#user_name").val());
@@ -289,6 +288,13 @@
         var confirm_new_password = $.trim($('#confirm_new_password').val());
         $('.error').text('').show();
         $('.error_text').show();
+
+        if(rendemotp == ''){
+          $('.error').text("Please Verify Your Email Id");
+          return false;
+        } else {
+          var email_id = $.trim($("#user_email_id").val());
+        }
 
         if (name == "") {
           $('.error').text('Please enter your Name');

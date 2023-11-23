@@ -38,37 +38,40 @@ class Register{
 
     function check() {
         $data = [
-            'register_login_id'   => $this->register_login_id,
+            'register_email_id'   => $this->register_email_id,
             'is_active' => 1
         ];
-        $stmt = $this->conn->prepare("SELECT register_login_id FROM ".$this->table_name." WHERE register_login_id = :register_login_id AND is_active=:is_active");
+        $stmt = $this->conn->prepare("SELECT register_email_id FROM ".$this->table_name." WHERE register_email_id = :register_email_id AND is_active=:is_active");
         $stmt->execute($data);
+        // $last_query = $stmt->queryString;
+        // $debug_query = $stmt->_debugQuery();
+        // echo $debug_query;exit;
         $count = $stmt->rowCount();
         $row = $stmt->fetch();
         $stmt->closeCursor();
         if($count>0) {
-            $this->register_login_id = $row['register_login_id'];
+            $this->register_email_id = $row['register_email_id'];
             return true;
         } else 
             return false;
     }
 
-    function check_username() {
-        $data = [
-            'username'   => $this->username,
-            'is_active'     => 1
-        ];
-        $stmt = $this->conn->prepare("SELECT register_login_id FROM ".$this->table_name." WHERE username = :username AND is_active=:is_active");
-        $stmt->execute($data);
-        $count = $stmt->rowCount();
-        $row = $stmt->fetch();
-        $stmt->closeCursor();
-        if($count>0) {
-            $this->register_login_id = $row['register_login_id'];
-            return true;
-        } else 
-            return false;
-    }
+    // function check_username() {
+    //     $data = [
+    //         'register_email_id'   => $this->register_email_id,
+    //         'is_active'     => 1
+    //     ];
+    //     $stmt = $this->conn->prepare("SELECT register_login_id FROM ".$this->table_name." WHERE register_email_id = :register_email_id AND is_active=:is_active");
+    //     $stmt->execute($data);
+    //     $count = $stmt->rowCount();
+    //     $row = $stmt->fetch();
+    //     $stmt->closeCursor();
+    //     if($count>0) {
+    //         $this->register_email_id = $row['register_email_id'];
+    //         return true;
+    //     } else 
+    //         return false;
+    // }
 
     function generate_password() {
         return password_hash($this->password, PASSWORD_BCRYPT, ["cost"=>12]);

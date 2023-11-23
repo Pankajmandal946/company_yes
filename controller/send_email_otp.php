@@ -11,31 +11,7 @@ $connection = $conn->connect();
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $errors = array();   // array to hold validation errors
     $output = array();   // array to pass back data
-    if (isset($_POST['type']) && $_POST['type'] == "email_valid") {
-        $register_email_id = trim($_POST['user_email_id']);
-        // print_r($_POST);exit;
-        try {
-            $statement = $connection->prepare("select * from registerUserLogin_New where register_email_id='$register_email_id'");
-            $statement->execute();
-            $count = $statement->rowCount();
-            $result = $statement->fetch();
-            // print_r($result);exit;
-            $statement->closeCursor();
-            $register_emailId = $result['register_email_id'];
-            if (isset($register_emailId) && $register_emailId != $register_email_id) {
-                $data['success'] = true;
-            } else {
-                $errors['error'] = 'Please Choose Another EmailId';
-                $data['success'] = false;
-                $data['errors'] = $errors;
-            }
-        } catch (Exception $e) {
-            $errors['error'] = $e->getMessage();
-            $data['success'] = false;
-            $data['errors'] = $errors;
-        }
-        echo json_encode($data);
-    } else if (isset($_POST['type']) && $_POST['type'] == "sand_otpEmail") {
+    if (isset($_POST['type']) && $_POST['type'] == "sand_otpEmail") {
         $register_email_id = trim($_POST['user_email_id']);
         $randomOTP = $costumor_user->randomOTP();
         // print_r($randomOTP);exit;
@@ -121,30 +97,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             $data['rendemotp'] = $rendemotp;
         }else{
             $errors['error'] = "Please Enter Valid Verification Code";
-            $data['success'] = false;
-            $data['errors'] = $errors;
-        }
-        echo json_encode($data);
-    } else if (isset($_POST['type']) && $_POST['type'] == "user_valid") {
-        $username = trim($_POST['username']);
-        // print_r($_POST);exit;
-        try {
-            $statement = $connection->prepare("select username from registerUserLogin_New where username=:username");
-            $statement->bindValue(':username', $username);
-            $statement->execute();
-            $count = $statement->rowCount();
-            $result = $statement->fetch();
-            // print_r($count);exit;
-            $statement->closeCursor();
-            if (isset($count) && $count > 0) {
-                $data['success'] = true;
-            } else {
-                $errors['error'] = '<div class="input-group-append"><div class="input-group-text"><span class="fas fa-times-circle" style="color:red;" id="user_valid"></span></div></div>';
-                $data['success'] = false;
-                $data['errors'] = $errors;
-            }
-        } catch (Exception $e) {
-            $errors['error'] = $e->getMessage();
             $data['success'] = false;
             $data['errors'] = $errors;
         }

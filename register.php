@@ -15,25 +15,22 @@
   <link rel="stylesheet" href="theme/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="theme/dist/css/adminlte.min.css">
+  <!-- Register style -->
+  <link rel="stylesheet" href="theme/cssR_L/style.css">
 </head>
 
 <body class="hold-transition register-page">
   <div class="register-box">
     <div class="card card-outline card-primary">
       <div class="card-header text-center">
-        <a href="theme/index2.html" class="h1"><b style="color:brown">Register</b><span style="color:green">Page</span></a>
+        <h1><b style="color:green">Create</b><span style="color:chartreuse"> Account</span></h1>
       </div>
       <div class="card-body">
-        <p class="login-box-msg">Register a new membership</p>
+        <!-- <p class="login-box-msg">It's quick and easy.</p> -->
 
         <form method="post">
           <div class="input-group mb-3">
             <input type="text" class="form-control" id="user_name" placeholder="Full name">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-user"></span>
-              </div>
-            </div>
           </div>
           <!-- Email Id Verification code start -->
           <div class="input-group mb-3">
@@ -55,23 +52,13 @@
             </div>
           </div>
           <!-- Email Id Verification code start -->
-          <!-- UserName Verify Start -->
-          <div class="input-group mb-3">
-            <!-- <input type="hidden" name="user_name" id="user_name" value=""> -->
-            <input type="username" class="form-control" id="username" name="username" placeholder="Username">
-            <div class="input-group-append uservalid">
-              <div class="input-group-text">
-                <span class="fas fa-user-plus" style="color:red;" id="user_valid"></span>
-              </div>
-            </div>
-          </div>
-          <!-- UserName Verify End -->
 
           <div class="input-group mb-3">
             <input type="password" name="new_password" id="new_password" class="form-control" placeholder="Password">
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
+            <div class="input-group-append otpSend">
+              <div class="input-group-text emailSandOtp" style="color:red;">
+                <span class="fas fa-eye-slash pasword_show" style="color:red;" type="submit" ></span>
+                <span class="fas fa-eye pasword_hide" style="color:red; display:none;" type="submit" ></span>
               </div>
             </div>
           </div>
@@ -80,7 +67,8 @@
             <input type="password" class="form-control" id="confirm_new_password" placeholder="Confirm Password">
             <div class="input-group-append">
               <div class="input-group-text">
-                <span class="fas fa-lock"></span>
+                <span class="fas fa-eye-slash paswordShow" style="color:red;" type="submit" ></span>
+                <span class="fas fa-eye paswordHide" style="color:red; display:none;" type="submit" ></span>
               </div>
             </div>
           </div>
@@ -100,26 +88,16 @@
           </div>
 
           <div class="row">
-            <div class="col-8">
-              <div class="icheck-primary">
-                <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-                <label for="agreeTerms">
-                  I agree to the <a href="#">terms</a>
-                </label>
-              </div>
-            </div>
-            <!-- /.col -->
-            <div class="col-4">
+            <div class="col">
               <div ></div>
               <div ></div>
-              <button type="submit" id="registerUser" class="btn btn-primary btn-block">Register</button>
-              <!-- <button class="btn btn-primary" type="submit" style="width:100%;" id="modify_password">Done</button> -->
+              <button type="submit" id="registerUser" class="btn btn-primary btn-block">Sign Up</button>
             </div>
             <!-- /.col -->
           </div>
         </form>
 
-        <a href="index.php" class="text-center">I already have a Account</a>
+        <a href="login.php" class="text-center t-2">I already have a Account</a>
       </div>
       <!-- /.form-box -->
     </div><!-- /.card -->
@@ -151,36 +129,6 @@
     // });
 
     $(document).ready(function() {
-      // Verifaiy emailId
-      $("#user_email_id").on("change", function(e) {
-        $('.error').text('').hide();
-        var user_email_id = $.trim($("#user_email_id").val());
-        if (user_email_id == "") {
-          alert('Please enter your EmailId');
-          $("#user_email_id").focus();
-          return false;
-        } else {
-          $.ajax({
-            method: "POST",
-            url: "controller/send_email_otp.php",
-            datatype: "json",
-            data: {
-              type: "email_valid",
-              user_email_id: user_email_id
-            },
-            success: function(theResponse) {
-              //alert(theResponse);
-              var obj = JSON.parse(theResponse);
-              if (obj.success == true) {
-                // $('.uservalid').html('<div class="input-group-append"><div class="input-group-text"><i class="fas fa-check-double" style="color:green;"></i></div></div>');
-              } else { 
-                alert(obj.errors.error);
-              }
-            }
-          });
-        }
-      });
-
       // Send OTP Jquary Code
       $('.email_verify_otp').hide();
       $("#send_otp").on("click", function(e) {
@@ -261,35 +209,28 @@
         }
       });
 
-      // Verify Username Jquary Code
-      $("#username").on("change", function(e) {
-        $('.error').text('').hide();
-        var username = $.trim($("#username").val());
-        if (username == "") {
-          alert('Please enter your Username');
-          $("#username").focus();
-          return false;
-        } else {
-          $.ajax({
-            method: "POST",
-            url: "controller/send_email_otp.php",
-            datatype: "json",
-            data: {
-              type: "user_valid",
-              username: username
-            },
-            success: function(theResponse) {
-              //alert(theResponse);
-              var obj = JSON.parse(theResponse);
-              if (obj.success == true) {
-                $('.uservalid').html('<div class="input-group-append"><div class="input-group-text"><i class="fas fa-check-double" style="color:green;"></i></div></div>');
-              } else {
-                $('.uservalid').html(obj.errors.error);
-              }
-            }
-          });
-        }
+      /* Password Show & hind start */ 
+      $(".pasword_show").click(function() {
+          $("#new_password").attr("type", "text");
+          $(".pasword_show").hide();
+          $(".pasword_hide").show();
       });
+      $(".pasword_hide").click(function() {
+          $("#new_password").attr("type", "password");
+          $(".pasword_show").show();
+          $(".pasword_hide").hide();
+      });
+      $(".paswordShow").click(function() {
+          $("#confirm_new_password").attr("type", "text");
+          $(".paswordShow").hide();
+          $(".paswordHide").show();
+      });
+      $(".paswordHide").click(function() {
+        $("#confirm_new_password").attr("type", "password");
+        $(".paswordShow").show();
+        $(".paswordHide").hide();
+      });
+      /* Password Show & hind End */ 
     });
 
     // $(document).ready(function() {
@@ -334,36 +275,30 @@
       $('.success_text').hide();
       $(document).on('click', '#registerUser', function(e) {
         e.preventDefault();
-        // rendemotp = $('#rendemotp').val();
-        // if(rendemotp == ''){
-        //   alert("Please Verify Your Email Id")
-        // } else {
-        //   var email_id = $.trim($("#user_email_id").val());
-        // }
+        rendemotp = $('#rendemotp').val();
+        if(rendemotp == ''){
+          alert("Please Verify Your Email Id")
+        } else {
+          var email_id = $.trim($("#user_email_id").val());
+        }
         // console.log(rendemotp);return false;
         var email_id = $.trim($("#user_email_id").val());
         var name = $.trim($("#user_name").val());
-        var username = $.trim($('#username').val());
+        // var username = $.trim($('#username').val());
         var new_password = $.trim($('#new_password').val());
         var confirm_new_password = $.trim($('#confirm_new_password').val());
-        $('.error').text('').hide();
+        $('.error').text('').show();
         $('.error_text').show();
 
         if (name == "") {
-          alert('Please enter your Name');
+          $('.error').text('Please enter your Name');
           $("#user_name").focus();
           return false;
         }
 
         if (email_id == "" ) {
-          alert('Please enter your Email Id');
+          $('.error').text('Please enter your Email Id');
           $("#user_email_id").focus();
-          return false;
-        }
-
-        if(username == ''){
-          $('.error').text('Please enter Username').show();
-          $('#username').focus();
           return false;
         }
 
@@ -407,7 +342,6 @@
           activity: 'register_newAcc',
           name: name,
           email_id: email_id,
-          username: username,
           new_password: new_password,
           confirm_new_password:confirm_new_password
         };
@@ -426,7 +360,8 @@
             console.log(request);
           },
         }).done(function(Response) {
-          $("#message").html(Response.msg).show();
+          $('.error_text').hide();
+          location.href = 'successfully_add.php';
         }).fail(function(jqXHR, exception) {
           var msg = '';
           if (jqXHR.status === 0) {
@@ -442,10 +377,9 @@
           } else if (exception === 'abort') {
             msg = 'Ajax request aborted.';
           } else {
-            msg = 'Uncaught Error.\n' + jqXHR.responseJSON.msg;
+            msg = jqXHR.responseJSON.msg;
           }
-          // $(".error").html(msg).show();
-          alert(msg);
+          $(".error").html(msg).show();
         }).always(function(xhr) {
           console.log(xhr);
         });

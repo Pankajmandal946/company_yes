@@ -34,6 +34,24 @@ try {
                         } else {
                             throw new Exception('User Name Already Exists',400);
                         }
+                    } else if ($request->activity == 'login') {
+                        $register->register_email_id = $request->user_email_id;
+                        $register->password = $request->password;
+                        $register->password = $request->password;
+                        $register->password = $request->password;
+                        if ($register->validate_login()) {
+                            // print_r($register);exit;
+                            $response = [
+                                'success' => 1,
+                                'code' => 200,
+                                'msg' => 'Valid Login Details!'
+                            ];
+            
+                            http_response_code(200);
+                            echo json_encode($response);
+                        } else {
+                            throw new Exception('Please post request in json format or it can not be blank', 400);
+                        }
                     } else {
                         throw new Exception('Invalid action type',400);
                     }

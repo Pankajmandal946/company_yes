@@ -27,20 +27,20 @@
     <div class="card-body">
       <!-- <p class="login-box-msg">Sign in to start your session</p> -->
 
-      <form action="theme/index3.html" method="post">
-        <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
-        </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
-        </div>
-        <div class="row">
-          <div class="col">
-            <button type="submit" class="btn btn-primary btn-block">Log In</button>
+      <form method="post">
+          <div class="input-group mb-3">
+            <input type="text" id="user_email_id" class="form-control" placeholder="user_email_id">
           </div>
-          <!-- /.col -->
-        </div>
-      </form>
+          <div class="input-group mb-3">
+            <input type="password" id="password" class="form-control" placeholder="Password">
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <button type="submit" id="login" class="btn btn-primary btn-block">Sign In</button>
+            </div>
+            <!-- /.col -->
+          </div>
+        </form>
 
       <p class="mb-1" style="margin-top:15px; text-align: center;">
         <a href="forgot-password.html">Forgotten password?</a>
@@ -64,5 +64,68 @@
 <script src="theme/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="theme/dist/js/adminlte.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $("#login").on("click", function(e) {
+        e.preventDefault();
+        var user_email_id = $.trim($("#user_email_id").val());
+        if (user_email_id == "") {
+          alert('Please enter your user_email_id');
+          $("#user_email_id").focus();
+          return false;
+        }
+        var password = $.trim($("#password").val());
+        if (user_email_id == "") {
+          alert('Please enter your password');
+          $("#password").focus();
+          return false;
+        }
+        if (user_email_id != "" && password != "") {
+          $.ajax({
+            url: "controller/register_new_userC.php",
+            type: "POST",
+            dataType: "json",
+            async: false,
+            headers: {
+              "Content-Type": "application/json"
+            },
+            data: JSON.stringify({
+              'activity': 'login',
+              'user_email_id': user_email_id,
+              'password': password
+            }),
+            success: function(response) {
+              window.location.href = "index.php";
+            },
+            error: function(jqXHR, exception) {
+              var msg = '';
+              if (jqXHR.status === 0) {
+                msg = 'Not connect.\n Verify Network.';
+              } else if (jqXHR.status == 404) {
+                msg = 'Requested page not found. [404]';
+              } else if (jqXHR.status == 500) {
+                msg = 'Internal Server Error [500].';
+              } else if (jqXHR.status == 401) {
+                msg = jqXHR.responseJSON.msg;
+              } else if (jqXHR.status == 402) {
+                $('#password_change').modal('show');
+              } else if (exception === 'parsererror') {
+                msg = 'Requested JSON parse failed.';
+              } else if (exception === 'timeout') {
+                msg = 'Time out error.';
+              } else if (exception === 'abort') {
+                msg = 'Ajax request aborted.';
+              } else {
+                msg = 'Uncaught Error.\n' + jqXHR.rsponseJSON.msg;
+              }
+              if (msg != '') {
+                alert(msg);
+              }
+            }
+          });
+        };
+      });
+  });
+</script>
 </body>
 </html>

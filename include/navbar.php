@@ -1,3 +1,6 @@
+<?php 
+session_start();
+?>
 <!-- Start Header/Navigation -->
 <nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 

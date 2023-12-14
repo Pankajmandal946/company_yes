@@ -30,7 +30,7 @@ try {
                             $response = [
                                 'success' => 1,
                                 'code' => 200,
-                                'msg' => 'User Type  Update Successfully!'
+                                'msg' => 'Categories of Fruit Update Successfully!'
                             ];
 
                             http_response_code(200);
@@ -48,11 +48,28 @@ try {
                         echo json_encode($response);
                     } else if($request->action=='statusHide') {
                         $fruitsCate->fruits_id = $request->fruits_id;
+                        $fruitsCate->fruits_name = $request->fruits_name;
+                        $fruitsCate->is_status = $request->is_status;
+                        // print_r($fruitsCate);exit;
                         $fruitsCate->statusHide();
                         $response = [
                             'success' => 1,
                             'code' => 200,
-                            'msg' => 'User Type Successfully deleted!',
+                            'msg' => 'Categories of Fruit Successfully Deactivate!',
+                        ];
+
+                        http_response_code(200);
+                        echo json_encode($response);
+                    } else if($request->action=='statusShow') {
+                        $fruitsCate->fruits_id = $request->fruits_id;
+                        $fruitsCate->fruits_name = $request->fruits_name;
+                        $fruitsCate->is_status = $request->is_status;
+                        // print_r($fruitsCate);exit;
+                        $fruitsCate->statusShow();
+                        $response = [
+                            'success' => 1,
+                            'code' => 200,
+                            'msg' => 'Categories of Fruit Successfully Activate!',
                         ];
 
                         http_response_code(200);
@@ -76,9 +93,9 @@ try {
                                 "s_no"        => $i,
                                 'fruits_id'   => $res['fruits_id'],
                                 "fruits_name" => $res["fruits_name"],
-                                "is_status"   =>  "<a class='statusHide cursor-pointer' data-id='".$res["is_status"]."' data-fname='".$res['fruits_name']."'><i class='fas fa-eye-slash pasword_show' aria-hidden='true' style='color:red; margin-left:15px;'></i></a><a class='statusShow cursor-pointer' data-id='".$res["is_status"]."' data-fname='".$res['fruits_name']."'><i class='fas fa-eye pasword_hide' aria-hidden='true' style='margin-left:15px; color:red; display:none;'></i></a>",
-                                "action"       => "<a class='edit cursor-pointer' data-id='".$res['fruits_id']."' data-fname='".$res['fruits_name']."'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>&nbsp;&nbsp;&nbsp;
-                                <a class='delete cursor-pointer text-danger' data-id='".$res['fruits_id']."'><i class='fa fa-trash' aria-hidden='true'></i></a>",
+                                "is_status"   => $res['is_status'],
+                                "action"      => "<a class='edit cursor-pointer' data-id='".$res['fruits_id']."' data-fname='".$res['fruits_name']."'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>&nbsp;&nbsp;&nbsp;<a class='delete cursor-pointer text-danger' data-id='".$res['fruits_id']."'><i class='fa fa-trash' aria-hidden='true'></i></a>",
+                                "active"      => "<a class='statusHide cursor-pointer text-danger' ids='Hide_".$res["fruits_id"]."' data-id='".$res["fruits_id"]."' data-fname='".$res['fruits_name']."' data-issts='".$res['is_status']."'><i class='fas fa-eye-slash pasword_show' aria-hidden='true' style='margin-left:15px;'></i></a><a class='statusShow cursor-pointer text-danger' style='display:none;' ids='Show_".$res["fruits_id"]."' data-id='".$res["fruits_id"]."' data-fname='".$res['fruits_name']."' data-issts='".$res['is_status']."'><i class='fas fa-eye pasword_hide' aria-hidden='true' style='margin-left:15px;'></i></a>",
                             ];
                         }
                         $response = [
@@ -87,7 +104,7 @@ try {
                             'recordsFiltered'   => $fruitsCate->get_total_count(),
                             'success'           => 1,
                             'code'              => 200,
-                            'msg'               => 'User Type Fetch Successfully!',
+                            'msg'               => 'Categories of Fruit Fetch Successfully!',
                             'data'              => $result,
                         ];
                         http_response_code(200);

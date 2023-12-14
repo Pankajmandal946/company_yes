@@ -18,7 +18,10 @@
                     </button>
                 </div>
             </div>
-        </div> -->
+        </div>
+        CASE WHEN u.user_type IN('Manager') THEN if(u2.user_short_name='',LEFT(  u2.user_name,16),u2.user_short_name)
+        ELSE ifnull(if(u1.user_short_name='',LEFT(  u1.user_name,16),u1.user_short_name),
+        if(u2.user_short_name='',LEFT(  u2.user_name,16),u2.user_short_name)) END as hod, -->
         <!-- /.SidebarSearch Form -->
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -36,7 +39,7 @@
 
                 <li class="nav-item menu-open">
                     <a href="user.php" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
+                        <i class="nav-icon fas fa-users"></i>
                         <p>
                             Users
                         </p>
@@ -44,9 +47,17 @@
                 </li>
                 <li class="nav-item menu-open">
                     <a href="user_type.php" class="nav-link">
-                        <i class="nav-icon fas fa-user"></i>
+                        <i class="nav-icon fas fa-user-cog"></i>
                         <p>
                             UserType
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item menu-open">
+                    <a href="fruit_cate.php" class="nav-link">
+                        <i class="nav-icon fas fa-leaf"></i>
+                        <p>
+                            Categories of Fruit
                         </p>
                     </a>
                 </li>

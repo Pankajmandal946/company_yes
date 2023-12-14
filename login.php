@@ -27,7 +27,7 @@
     <div class="card-body">
       <!-- <p class="login-box-msg">Sign in to start your session</p> -->
 
-      <form method="post">
+        <form method="post">
           <div class="input-group mb-3">
             <input type="text" id="user_email_id" class="form-control" placeholder="user_email_id">
           </div>

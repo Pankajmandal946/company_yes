@@ -78,8 +78,8 @@
                         <tr>
                             <th width='8%'>S.No.</th>
                             <th>Fruits Name</th>
-                            <th width='5%'>Action</th>                           
-                            <th width='5%'>Status Product</th>                           
+                            <th width='7%'>Action</th>                           
+                            <th width='7%'>Status Product</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -135,7 +135,7 @@
                 { "data": "s_no", "searchable": false, "orderable": false },
                 { "data": "fruits_name"},
                 { "data": "action", "searchable": false, "orderable": false },
-                { "data": "is_status", "searchable": false, "orderable": false },
+                { "data": "active", "searchable": false, "orderable": false },
             ]
         }).buttons().container().appendTo('#fruitsName_table_wrapper .col-md-6:eq(0)');
 
@@ -312,52 +312,120 @@
 
         $(document).on('click','.statusHide',function(e){
             let fruits_id = $(this).data('id');
-            let arr = { 
-                action : 'statusHide',
-                fruits_id: fruits_id
-            };
-            var request = JSON.stringify(arr);
-            $.ajax({
-                    method: "POST",
-                    url: "controller/fruit_cateC.php",
-                    data: request,
-                    dataType: "JSON",
-                    async: false,
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    beforeSend: function() {
-                        console.log(request);
-                    },
-                }).done(function (Response) {
-                    $('.statusShow').show();
-                    // $('#fruitsName_table').DataTable().ajax.reload();
-                    // $("#message").html(Response.msg).show();
-                    // $("#notice").removeClass("d-none");
-                    // $("#notice").removeClass("hide");
-                    // $("#notice").addClass("d-block");
-                    // $("#notice").addClass("show");
-                }).fail(function (jqXHR, exception) {
-                    var msg = '';
-                    if (jqXHR.status === 0) {
-                        msg = 'Not connect.\n Verify Network.';
-                    } else if (jqXHR.status == 404) {
-                        msg = 'Requested page not found. [404]';
-                    } else if (jqXHR.status == 500) {
-                        msg = 'Internal Server Error [500].';
-                    } else if (exception === 'parsererror') {
-                        msg = 'Requested JSON parse failed.';
-                    } else if (exception === 'timeout') {
-                        msg = 'Time out error.';
-                    } else if (exception === 'abort') {
-                        msg = 'Ajax request aborted.';
-                    } else {
-                        msg = 'Uncaught Error.\n' + jqXHR.responseJSON.msg;
-                    }
-                    $("#message").html(msg).show();
-                }).always(function (xhr) {
-                    console.log(xhr);
-            });
+            let is_status = $(this).data('issts');
+            let fruits_name = $(this).data('fname');
+            
+            if(is_status == 1){
+                let arr = { 
+                    action : 'statusHide',
+                    fruits_id:fruits_id,
+                    is_status: is_status,
+                    fruits_name:fruits_name
+                };
+                var request = JSON.stringify(arr);
+                $.ajax({
+                        method: "POST",
+                        url: "controller/fruit_cateC.php",
+                        data: request,
+                        dataType: "JSON",
+                        async: false,
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        beforeSend: function() {
+                            console.log(request);
+                        },
+                    }).done(function (Response) {
+                        $('#fruitsName_table').DataTable().ajax.reload();
+                        $("#message").html(Response.msg).show();
+                        // ids = $(this).data('ids');
+                        // $('#Hide_'+ids).hide();
+                        // $('#Show_'+ids)..show();
+                        $("#notice").removeClass("d-none");
+                        $("#notice").removeClass("hide");
+                        $("#notice").addClass("d-block");
+                        $("#notice").addClass("show");
+                    }).fail(function (jqXHR, exception) {
+                        var msg = '';
+                        if (jqXHR.status === 0) {
+                            msg = 'Not connect.\n Verify Network.';
+                        } else if (jqXHR.status == 404) {
+                            msg = 'Requested page not found. [404]';
+                        } else if (jqXHR.status == 500) {
+                            msg = 'Internal Server Error [500].';
+                        } else if (exception === 'parsererror') {
+                            msg = 'Requested JSON parse failed.';
+                        } else if (exception === 'timeout') {
+                            msg = 'Time out error.';
+                        } else if (exception === 'abort') {
+                            msg = 'Ajax request aborted.';
+                        } else {
+                            msg = 'Uncaught Error.\n' + jqXHR.responseJSON.msg;
+                        }
+                        $("#message").html(msg).show();
+                    }).always(function (xhr) {
+                        console.log(xhr);
+                });
+            }
+        });
+
+        $(document).on('click','.statusShow',function(e){
+            let fruits_id = $(this).data('id');
+            let is_status = $(this).data('issts');
+            let fruits_name = $(this).data('fname');
+            
+            if(is_status == 2){
+                let arr = { 
+                    action : 'statusShow',
+                    fruits_id:fruits_id,
+                    is_status: is_status,
+                    fruits_name:fruits_name
+                };
+                var request = JSON.stringify(arr);
+                $.ajax({
+                        method: "POST",
+                        url: "controller/fruit_cateC.php",
+                        data: request,
+                        dataType: "JSON",
+                        async: false,
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        beforeSend: function() {
+                            console.log(request);
+                        },
+                    }).done(function (Response) {
+                        // $('#Hide_'+fruits_id).show();
+                        $('.statusHide').hide();
+                        $('.statusShow').show();
+                        // $('#fruitsName_table').DataTable().ajax.reload();
+                        // $("#message").html(Response.msg).show();
+                        // $("#notice").removeClass("d-none");
+                        // $("#notice").removeClass("hide");
+                        // $("#notice").addClass("d-block");
+                        // $("#notice").addClass("show");
+                    }).fail(function (jqXHR, exception) {
+                        var msg = '';
+                        if (jqXHR.status === 0) {
+                            msg = 'Not connect.\n Verify Network.';
+                        } else if (jqXHR.status == 404) {
+                            msg = 'Requested page not found. [404]';
+                        } else if (jqXHR.status == 500) {
+                            msg = 'Internal Server Error [500].';
+                        } else if (exception === 'parsererror') {
+                            msg = 'Requested JSON parse failed.';
+                        } else if (exception === 'timeout') {
+                            msg = 'Time out error.';
+                        } else if (exception === 'abort') {
+                            msg = 'Ajax request aborted.';
+                        } else {
+                            msg = 'Uncaught Error.\n' + jqXHR.responseJSON.msg;
+                        }
+                        $("#message").html(msg).show();
+                    }).always(function (xhr) {
+                        console.log(xhr);
+                });
+            }
         });
     });
 </script>

@@ -71,6 +71,18 @@ class FruitsCate{
         $stmt->execute($data);
         return true;
     }
+
+    //Status Show
+    public function statusShow(){
+        $data = [
+            "fruits_id"  => $this->fruits_id,
+            "is_status"  => 1
+        ];
+        $sql = "UPDATE ".$this->table_name." SET is_status = :is_status WHERE fruits_id = :fruits_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute($data);
+        return true;
+    }
     
     // Get
     public function get($Request = []){

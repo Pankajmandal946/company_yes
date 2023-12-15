@@ -338,9 +338,6 @@
                     }).done(function (Response) {
                         $('#fruitsName_table').DataTable().ajax.reload();
                         $("#message").html(Response.msg).show();
-                        // ids = $(this).data('ids');
-                        // $('#Hide_'+ids).hide();
-                        // $('#Show_'+ids)..show();
                         $("#notice").removeClass("d-none");
                         $("#notice").removeClass("hide");
                         $("#notice").addClass("d-block");
@@ -395,15 +392,12 @@
                             console.log(request);
                         },
                     }).done(function (Response) {
-                        // $('#Hide_'+fruits_id).show();
-                        $('.statusHide').hide();
-                        $('.statusShow').show();
-                        // $('#fruitsName_table').DataTable().ajax.reload();
-                        // $("#message").html(Response.msg).show();
-                        // $("#notice").removeClass("d-none");
-                        // $("#notice").removeClass("hide");
-                        // $("#notice").addClass("d-block");
-                        // $("#notice").addClass("show");
+                        $('#fruitsName_table').DataTable().ajax.reload();
+                        $("#message").html(Response.msg).show();
+                        $("#notice").removeClass("d-none");
+                        $("#notice").removeClass("hide");
+                        $("#notice").addClass("d-block");
+                        $("#notice").addClass("show");
                     }).fail(function (jqXHR, exception) {
                         var msg = '';
                         if (jqXHR.status === 0) {

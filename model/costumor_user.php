@@ -1,4 +1,5 @@
 <?php
+/* Not Use Now */
 require_once '../config/DBConnection.php';
 class Costumer_Userlogin {
     public $user_login_id, $user_name,$user_email_id, $username, $password, $last_login_time, $new_password,$last_login_ip, $default_password_change, $password_change_time, $is_active,$login_account, $created_by, $created_on, $updated_by, $updated_on, $table_name, $db, $conn;

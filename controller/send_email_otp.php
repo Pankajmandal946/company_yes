@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $randomOTP = $costumor_user->randomOTP();
         // print_r($randomOTP);exit;
         try {
-            $statement = $connection->prepare("select register_email_id from customer_user_login where register_email_id=:register_email_id");
+            $statement = $connection->prepare("select register_email_id from registerUserLogin_New where register_email_id=:register_email_id");
             $statement->bindValue(':register_email_id', $register_email_id);
             $statement->execute();
             $count = $statement->rowCount();

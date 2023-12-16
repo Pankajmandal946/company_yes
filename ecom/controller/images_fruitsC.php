@@ -1,4 +1,4 @@
-<?php  require_once '../model/fruit_cateM.php';
+<?php  require_once '../model/images_fruitsM.php';
 try {
     if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD']=='POST') {
         $json = file_get_contents('php://input');
@@ -6,7 +6,7 @@ try {
             $request = json_decode($json);
             if(isset($request) && !empty($request)) {
                 if(isset($request->action)) {
-                    $fruitsCate = new FruitsCate();
+                    $pdrctImg = new PductImage();
                     if($request->action=='add') {
                         $fruitsCate->fruits_name   = $request->fruits_name;
                         if($fruitsCate->check() === false) {
@@ -76,43 +76,52 @@ try {
                         echo json_encode($response);
                     } else if($request->action=='get') {
                         $result = [];
-                        if(isset($request->fruits_id) && $request->fruits_id>0) {
-                            $fruitsCate->fruits_id = $request->fruits_id;
+                        if(isset($request->pduct_image_id) && $request->pduct_image_id>0) {
+                            $pdrctImg->pduct_image_id = $request->pduct_image_id;
                         }
-                        $results = $fruitsCate->get($request);
+                        $results = $pdrctImg->get($request);
                         if(isset($request->start)) {
                             $i = $request->start;
                         } else {
                             $i=0;
                             $request->draw=0;
                         }
-                        foreach($results as $res) {                        
-                            if($res['is_status'] == 1){
-                                ++$i;
-                                $result [] = [
-                                    "s_no"        => $i,
-                                    'fruits_id'   => $res['fruits_id'],
-                                    "fruits_name" => $res["fruits_name"],
-                                    "is_status"   => $res['is_status'],
-                                    "action"      => "<a class='edit cursor-pointer' data-id='".$res['fruits_id']."' data-fname='".$res['fruits_name']."'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>&nbsp;&nbsp;&nbsp;<a class='delete cursor-pointer text-danger' data-id='".$res['fruits_id']."'><i class='fa fa-trash' aria-hidden='true'></i></a>",
-                                    "active"      => "<a class='statusHide cursor-pointer text-danger' ids='Hide_".$res["fruits_id"]."' data-id='".$res["fruits_id"]."' data-fname='".$res['fruits_name']."' data-issts='".$res['is_status']."'><i class='fas fa-eye-slash pasword_show' aria-hidden='true' style='margin-left:15px;'></i></a><a class='statusShow cursor-pointer text-danger' style='display:none;' ids='Show_".$res["fruits_id"]."' data-id='".$res["fruits_id"]."' data-fname='".$res['fruits_name']."' data-issts='".$res['is_status']."'><i class='fas fa-eye pasword_hide' aria-hidden='true' style='margin-left:15px;'></i></a>",                                   
-                                ];
-                            } else{
-                                ++$i;
-                                $result [] = [
-                                    "s_no"        => $i,
-                                    'fruits_id'   => $res['fruits_id'],
-                                    "fruits_name" => $res["fruits_name"],
-                                    "is_status"   => $res['is_status'],
-                                    "action"      => "<a class='edit cursor-pointer' data-id='".$res['fruits_id']."' data-fname='".$res['fruits_name']."'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>&nbsp;&nbsp;&nbsp;<a class='delete cursor-pointer text-danger' data-id='".$res['fruits_id']."'><i class='fa fa-trash' aria-hidden='true'></i></a>",
-                                    "active"      => "<a class='statusShow cursor-pointer text-danger' ids='Hide_".$res["fruits_id"]."' data-id='".$res["fruits_id"]."' data-fname='".$res['fruits_name']."' data-issts='".$res['is_status']."'><i class='fas fa-eye pasword_hide' aria-hidden='true' style='margin-left:15px;'></i></a><a class='statusHide cursor-pointer text-danger' style='display:none;' ids='Show_".$res["fruits_id"]."' data-id='".$res["fruits_id"]."' data-fname='".$res['fruits_name']."' data-issts='".$res['is_status']."'><i class='fas fa-eye pasword_hide' aria-hidden='true' style='margin-left:15px;'></i></a>",                                   
-                                ];
-                            }
+                        // print_r($results);exit;
+                        foreach($results as $res) {
+                            ++$i;
+                            // $pductImgs = '<button type="button" style="margin-left: 41px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                            //     <i class="fas fa-folder-open" style="font-size:25px;"></i>
+                            //     </button>
+                            //     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            //         <div class="modal-dialog modal-dialog-centered" role="document">
+                            //             <div class="modal-content">
+                            //             <div class="modal-header">
+                            //                 <h5 class="modal-title" id="exampleModalLongTitle">Images</h5>
+                            //                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            //                 <span aria-hidden="true">&times;</span>
+                            //                 </button>
+                            //             </div>
+                            //             <div class="modal-body">'.$res["product_images"].'</div>
+                            //             <div class="modal-footer">
+                            //                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            //             </div>
+                            //             </div>
+                            //         </div>
+                            //     </div>';
+                            
+                            $result [] = [
+                                "s_no"        => $i,
+                                'pduct_image_id' => $res['pduct_image_id'],
+                                "fruits_name"    => $res['fruits_name'],
+                                'image_name'     => $res['image_name'],
+                                "product_images" => $res["product_images"],
+                                "action"         => "<a class='edit cursor-pointer' data-id='".$res['pduct_image_id']."' data-fname='".$res['image_name']."'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>&nbsp;&nbsp;&nbsp;<a class='delete cursor-pointer text-danger' data-id='".$res['pduct_image_id']."'><i class='fa fa-trash' aria-hidden='true'></i></a>",
+                            ];
                         }
                         $response = [
                             'draw'              => intval($request->draw),
                             'recordsTotal'      => count($results),
-                            'recordsFiltered'   => $fruitsCate->get_total_count(),
+                            'recordsFiltered'   => $pdrctImg->get_total_count(),
                             'success'           => 1,
                             'code'              => 200,
                             'msg'               => 'Categories of Fruit Fetch Successfully!',

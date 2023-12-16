@@ -1,7 +1,7 @@
 <?php
 require_once '../config/DBConnection.php';
 
-class FruitsCate{
+class PductImage{
 
     Public $pduct_image_id, $fruits_id, $image_name, $product_images, $is_status, $is_active, $created_on, $created_by, $update_on, $update_by, $table_name, $db, $conn;
 
@@ -98,7 +98,10 @@ class FruitsCate{
         ];
 
         if(!empty($Request)){
-            $query = "SELECT image_name, product_images,is_status FROM ".$this->table_name." WHERE is_active < :is_active";
+            $query = "SELECT pi.pduct_image_id,pi.image_name, pi.product_images,fc.fruits_name 
+                FROM ".$this->table_name." pi
+                INNER JOIN fruits_categories fc on fc.fruits_id = pi.fruits_id 
+                WHERE pi.is_active < :is_active and fc.is_status='1'";
 
             if (isset($Request->search->value)) {
                 $data['search_value'] = '%'.$Request->search->value.'%';
@@ -107,7 +110,7 @@ class FruitsCate{
             if (isset($Request->order) && $Request->order['0']->column > 0) {
                 $query .= " ORDER BY ".$Request->order['0']->column." ".$Request->order['0']->dir;
             } else {
-                $query .= ' ORDER BY image_name asc ';
+                $query .= ' ORDER BY fc.fruits_name asc ';
             }
             if (isset($Request->length) && $Request->length != -1) {
                 $query .= ' LIMIT ' . $Request->start. ', ' . $Request->length;
@@ -120,16 +123,19 @@ class FruitsCate{
         $stmt->execute($data);
         // $last_query = $stmt->queryString;
         // $debug_query = $stmt->_debugQuery();
+        // echo $debug_query;exit;
         $results = $stmt->fetchAll();
+        // print_r($results);exit;
         $count = $stmt->rowCount();
         $stmt->closeCursor();
 
         if($count > 0){
             foreach($results as $row){
                 $output[] = [
-                    'fruits_id'  => $row['fruits_id'],
-                    'fruits_name'=> $row['fruits_name'],
-                    'is_status'=> $row['is_status']
+                    'pduct_image_id' => $row['pduct_image_id'],
+                    'image_name'     => $row['image_name'],
+                    'product_images' => $row['product_images'],
+                    'fruits_name'    => $row['fruits_name']
                 ];
             }
         }

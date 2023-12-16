@@ -60,9 +60,9 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="fee">Upload Bill</label>
+                                        <label for="fee">Upload Image</label>
                                         <input type="hidden" id="billPath" value=""/>
-                                        <input type="file" name="bill_upload" multiple onchange="encodeImagetoBase64(this, 'bill_file_base64')" id="bill_upload" class="form-control"/>
+                                        <input type="file" name="bill_upload" onchange="encodeImagetoBase64(this, 'bill_file_base64')" id="bill_upload" class="form-control"/>
                                         <input type="hidden" name="bill_file_base64" id="bill_file_base64" value="" />
                                     </div>
                                 </div>
@@ -93,9 +93,10 @@
                     <thead>
                         <tr>
                             <th width='8%'>S.No.</th>
-                            <th>Fruits Name</th>
-                            <th width='7%'>Action</th>                           
-                            <th width='7%'>Status Product</th>
+                            <th width='15%'>Fruits Name</th>
+                            <th>Image Fruit Name</th>
+                            <th width='12%'>Images</th>
+                            <th width='7%'>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -182,7 +183,7 @@
             processing: true,
             serverSide: true,
             ajax: {
-                url: "controller/fruit_cateC.php",
+                url: "controller/images_fruitsC.php",
                 type: "POST",
                 dataType: "json",
                 async: false,
@@ -197,8 +198,9 @@
             "columns": [
                 { "data": "s_no", "searchable": false, "orderable": false },
                 { "data": "fruits_name"},
+                { "data": "image_name"},
+                { "data": "product_images"},
                 { "data": "action", "searchable": false, "orderable": false },
-                { "data": "active", "searchable": false, "orderable": false },
             ]
         }).buttons().container().appendTo('#fruitsName_table_wrapper .col-md-6:eq(0)');
 

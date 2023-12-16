@@ -61,6 +61,14 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item menu-open">
+                    <a href="images_fruits.php" class="nav-link">
+                        <i class="nav-icon fas fa-file-image"></i>
+                        <p>
+                            Fruit of Images
+                        </p>
+                    </a>
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

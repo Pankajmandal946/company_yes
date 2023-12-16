@@ -3,378 +3,358 @@
   include "include/header.php";
   include "include/navbar.php";
 ?>
-<!-- Start Hero Section -->
-<div class="hero">
+<!-- Feature Start -->
+<div class="container-xxl py-6">
     <div class="container">
-        <div class="row justify-content-between">
-            <div class="col-lg-5">
-                <div class="intro-excerpt">
-                    <h1>Modern Interior <span clsas="d-block">Design Studio</span></h1>
-                    <p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.</p>
-                    <p><a href="" class="btn btn-secondary me-2">Shop Now</a><a href="#" class="btn btn-white-outline">Explore</a></p>
+        <div class="row g-4">
+            <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="feature-item bg-light rounded text-center p-5">
+                    <i class="fa fa-4x fa-edit text-success mb-4"></i>
+                    <h5 class="mb-3">Fully Customizable</h5>
+                    <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
                 </div>
             </div>
-            <div class="col-lg-7">
-                <div class="hero-img-wrap">
-                    <img src="theme/images//couch.png" class="img-fluid">
+            <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="feature-item bg-light rounded text-center p-5">
+                    <i class="fa fa-4x fa-sync text-success mb-4"></i>
+                    <h5 class="mb-3">App Integration</h5>
+                    <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="feature-item bg-light rounded text-center p-5">
+                    <i class="fa fa-4x fa-draw-polygon text-success mb-4"></i>
+                    <h5 class="mb-3">Drag And Drop</h5>
+                    <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet.</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!-- End Hero Section -->
+<!-- Feature End -->
 
-<!-- Start Product Section -->
-<div class="product-section">
+
+<!-- About Start -->
+<div class="container-xxl py-6" id="about">
     <div class="container">
-        <div class="row">
-
-            <!-- Start Column 1 -->
-            <div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
-                <h2 class="mb-4 section-title">Crafted with excellent material.</h2>
-                <p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. </p>
-                <p><a href="shop.html" class="btn">Explore</a></p>
+        <div class="row g-5 flex-column-reverse flex-lg-row">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <h1 class="mb-4">Manage & Push Your Business To The Next Level</h1>
+                <p class="mb-4">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit clita duo justo eirmod magna dolore erat amet</p>
+                <div class="d-flex mb-4">
+                    <div class="flex-shrink-0 btn-square rounded-circle bg-success text-white">
+                        <i class="fa fa-check"></i>
+                    </div>
+                    <div class="ms-4">
+                        <h5>First Working Process</h5>
+                        <p class="mb-0">Aliqu diam amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit clita duo justo magna</p>
+                    </div>
+                </div>
+                <div class="d-flex mb-4">
+                    <div class="flex-shrink-0 btn-square rounded-circle bg-success text-white">
+                        <i class="fa fa-check"></i>
+                    </div>
+                    <div class="ms-4">
+                        <h5>24/7 Hours Support</h5>
+                        <p class="mb-0">Aliqu diam amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit clita duo justo magna</p>
+                    </div>
+                </div>
+                <a href="" class="btn btn-success py-sm-3 px-sm-5 rounded-pill mt-3">Read More</a>
             </div>
-            <!-- End Column 1 -->
-
-            <!-- Start Column 2 -->
-            <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-                <a class="product-item" href="cart.html">
-                    <img src="theme/images//product-1.png" class="img-fluid product-thumbnail">
-                    <h3 class="product-title">Nordic Chair</h3>
-                    <strong class="product-price">$50.00</strong>
-
-                    <span class="icon-cross">
-                        <img src="theme/images//cross.svg" class="img-fluid">
-                    </span>
-                </a>
-            </div>
-            <!-- End Column 2 -->
-
-            <!-- Start Column 3 -->
-            <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-                <a class="product-item" href="cart.html">
-                    <img src="theme/images//product-2.png" class="img-fluid product-thumbnail">
-                    <h3 class="product-title">Kruzo Aero Chair</h3>
-                    <strong class="product-price">$78.00</strong>
-
-                    <span class="icon-cross">
-                        <img src="theme/images/cross.svg" class="img-fluid">
-                    </span>
-                </a>
-            </div>
-            <!-- End Column 3 -->
-
-            <!-- Start Column 4 -->
-            <div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-                <a class="product-item" href="cart.html">
-                    <img src="theme/images//product-3.png" class="img-fluid product-thumbnail">
-                    <h3 class="product-title">Ergonomic Chair</h3>
-                    <strong class="product-price">$43.00</strong>
-
-                    <span class="icon-cross">
-                        <img src="theme/images/cross.svg" class="img-fluid">
-                    </span>
-                </a>
-            </div>
-            <!-- End Column 4 -->
-
-        </div>
-    </div>
-</div>
-<!-- End Product Section -->
-
-<!-- Start Why Choose Us Section -->
-<div class="why-choose-section">
-    <div class="container">
-        <div class="row justify-content-between">
             <div class="col-lg-6">
-                <h2 class="section-title">Why Choose Us</h2>
-                <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.</p>
-
-                <div class="row my-5">
-                    <div class="col-6 col-md-6">
-                        <div class="feature">
-                            <div class="icon">
-                                <img src="theme/images/truck.svg" alt="Image" class="imf-fluid">
-                            </div>
-                            <h3>Fast &amp; Free Shipping</h3>
-                            <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-md-6">
-                        <div class="feature">
-                            <div class="icon">
-                                <img src="theme/images/bag.svg" alt="Image" class="imf-fluid">
-                            </div>
-                            <h3>Easy to Shop</h3>
-                            <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-md-6">
-                        <div class="feature">
-                            <div class="icon">
-                                <img src="theme/images/support.svg" alt="Image" class="imf-fluid">
-                            </div>
-                            <h3>24/7 Support</h3>
-                            <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
-                        </div>
-                    </div>
-
-                    <div class="col-6 col-md-6">
-                        <div class="feature">
-                            <div class="icon">
-                                <img src="theme/images/return.svg" alt="Image" class="imf-fluid">
-                            </div>
-                            <h3>Hassle Free Returns</h3>
-                            <p>Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate.</p>
-                        </div>
-                    </div>
-
-                </div>
+                <img class="img-fluid rounded wow zoomIn" data-wow-delay="0.5s" src="theme/images/tm1.jpg">
             </div>
-
-            <div class="col-lg-5">
-                <div class="img-wrap">
-                    <img src="theme/images/why-choose-us-img.jpg" alt="Image" class="img-fluid">
-                </div>
-            </div>
-
         </div>
     </div>
 </div>
-<!-- End Why Choose Us Section -->
+<!-- About End -->
 
-<!-- Start We Help Section -->
-<div class="we-help-section">
+
+<!-- Overview Start -->
+<div class="container-xxl bg-light my-6 py-5" id="overview">
     <div class="container">
-        <div class="row justify-content-between">
-            <div class="col-lg-7 mb-5 mb-lg-0">
-                <div class="imgs-grid">
-                    <div class="grid grid-1"><img src="theme/images/img-grid-1.jpg" alt="Untree.co"></div>
-                    <div class="grid grid-2"><img src="theme/images/img-grid-2.jpg" alt="Untree.co"></div>
-                    <div class="grid grid-3"><img src="theme/images/img-grid-3.jpg" alt="Untree.co"></div>
+        <div class="row g-5 py-5 align-items-center">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <img class="img-fluid rounded" src="theme/images/tm2.jpg">
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="d-flex align-items-center mb-4">
+                    <h1 class="mb-0">01</h1>
+                    <span class="bg-success mx-2" style="width: 30px; height: 2px;"></span>
+                    <h5 class="mb-0">App Integration</h5>
+                </div>
+                <p class="mb-4">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit clita duo justo eirmod magna dolore erat amet</p>
+                <p><i class="fa fa-check-circle text-success me-3"></i>Fully customizable</p>
+                <p><i class="fa fa-check-circle text-success me-3"></i>User friendly interface</p>
+                <p class="mb-0"><i class="fa fa-check-circle text-success me-3"></i>More effective & poerwfull</p>
+            </div>
+        </div>
+        <div class="row g-5 py-5 align-items-center flex-column-reverse flex-lg-row">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="d-flex align-items-center mb-4">
+                    <h1 class="mb-0">02</h1>
+                    <span class="bg-success mx-2" style="width: 30px; height: 2px;"></span>
+                    <h5 class="mb-0">App Customization</h5>
+                </div>
+                <p class="mb-4">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit clita duo justo eirmod magna dolore erat amet</p>
+                <p><i class="fa fa-check-circle text-success me-3"></i>Fully customizable</p>
+                <p><i class="fa fa-check-circle text-success me-3"></i>User friendly interface</p>
+                <p class="mb-0"><i class="fa fa-check-circle text-success me-3"></i>More effective & poerwfull</p>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <img class="img-fluid rounded" src="theme/images/tm3.jpg">
+            </div>
+        </div>
+        <div class="row g-5 py-5 align-items-center">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <img class="img-fluid rounded" src="theme/images/tm4.jpg">
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="d-flex align-items-center mb-4">
+                    <h1 class="mb-0">03</h1>
+                    <span class="bg-success mx-2" style="width: 30px; height: 2px;"></span>
+                    <h5 class="mb-0">App Modification</h5>
+                </div>
+                <p class="mb-4">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit clita duo justo eirmod magna dolore erat amet</p>
+                <p><i class="fa fa-check-circle text-success me-3"></i>Fully customizable</p>
+                <p><i class="fa fa-check-circle text-success me-3"></i>User friendly interface</p>
+                <p class="mb-0"><i class="fa fa-check-circle text-success me-3"></i>More effective & poerwfull</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Overview End -->
+
+
+<!-- Advanced Feature Start -->
+<div class="container-xxl py-6" id="features">
+    <div class="container">
+        <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h1 class="mb-3">Advanced Features</h1>
+            <p class="mb-5">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit clita duo justo</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="advanced-feature-item text-center rounded py-5 px-4">
+                    <i class="fa fa-edit fa-3x text-success mb-4"></i>
+                    <h5 class="mb-3">Fully Customizable</h5>
+                    <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet.</p>
                 </div>
             </div>
-            <div class="col-lg-5 ps-lg-5">
-                <h2 class="section-title mb-4">We Help You Make Modern Interior Design</h2>
-                <p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="advanced-feature-item text-center rounded py-5 px-4">
+                    <i class="fa fa-sync fa-3x text-success mb-4"></i>
+                    <h5 class="mb-3">App Integration</h5>
+                    <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="advanced-feature-item text-center rounded py-5 px-4">
+                    <i class="fa fa-laptop fa-3x text-success mb-4"></i>
+                    <h5 class="mb-3">High Resolution</h5>
+                    <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+                <div class="advanced-feature-item text-center rounded py-5 px-4">
+                    <i class="fa fa-draw-polygon fa-3x text-success mb-4"></i>
+                    <h5 class="mb-3">Drag And Drop</h5>
+                    <p class="m-0">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Advanced Feature End -->
 
-                <ul class="list-unstyled custom-list my-4">
-                    <li>Donec vitae odio quis nisl dapibus malesuada</li>
-                    <li>Donec vitae odio quis nisl dapibus malesuada</li>
-                    <li>Donec vitae odio quis nisl dapibus malesuada</li>
-                    <li>Donec vitae odio quis nisl dapibus malesuada</li>
+
+<!-- Facts Start -->
+<div class="container-xxl bg-success my-6 py-6 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.1s">
+                <i class="fa fa-cogs fa-3x text-white mb-3"></i>
+                <h1 class="mb-2" data-toggle="counter-up">7264</h1>
+                <p class="text-white mb-0">Active Install</p>
+            </div>
+            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.3s">
+                <i class="fa fa-users fa-3x text-white mb-3"></i>
+                <h1 class="mb-2" data-toggle="counter-up">6521</h1>
+                <p class="text-white mb-0">Satisfied Clients</p>
+            </div>
+            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.5s">
+                <i class="fa fa-certificate fa-3x text-white mb-3"></i>
+                <h1 class="mb-2" data-toggle="counter-up">729</h1>
+                <p class="text-white mb-0">Award Wins</p>
+            </div>
+            <div class="col-md-6 col-lg-3 text-center wow fadeIn" data-wow-delay="0.7s">
+                <i class="fa fa-quote-left fa-3x text-white mb-3"></i>
+                <h1 class="mb-2" data-toggle="counter-up">5917</h1>
+                <p class="text-white mb-0">Clients Reviews</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Facts End -->
+
+
+<!-- Process Start -->
+<div class="container-xxl py-6">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <img class="img-fluid rounded" src="theme/images/tm5.jpg">
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                <h1 class="mb-4">Three Simple Steps To Start Working With</h1>
+                <p class="mb-4">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit clita duo justo eirmod magna dolore erat amet</p>
+                <ul class="process mb-0">
+                    <li>
+                        <span><i class="fa fa-cog"></i></span>
+                        <div>
+                            <h5>Install the Software</h5>
+                            <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos erat ipsum et lorem et sit</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span><i class="fa fa-address-card"></i></span>
+                        <div>
+                            <h5>Setup Your Profile</h5>
+                            <p>Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo</p>
+                        </div>
+                    </li>
+                    <li>
+                        <span><i class="fa fa-check"></i></span>
+                        <div>
+                            <h5>Enjoy The Features</h5>
+                            <p>Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna</p>
+                        </div>
+                    </li>
                 </ul>
-                <p><a herf="#" class="btn">Explore</a></p>
             </div>
         </div>
     </div>
 </div>
-<!-- End We Help Section -->
+<!-- Process End -->
 
-<!-- Start Popular Product -->
-<div class="popular-product">
+<!-- Testimonial Start -->
+<div class="container-xxl py-6" id="testimonial">
     <div class="container">
-        <div class="row">
-
-            <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
-                <div class="product-item-sm d-flex">
-                    <div class="thumbnail">
-                        <img src="theme/images/product-1.png" alt="Image" class="img-fluid">
-                    </div>
-                    <div class="pt-3">
-                        <h3>Nordic Chair</h3>
-                        <p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio </p>
-                        <p><a href="#">Read More</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
-                <div class="product-item-sm d-flex">
-                    <div class="thumbnail">
-                        <img src="theme/images/product-2.png" alt="Image" class="img-fluid">
-                    </div>
-                    <div class="pt-3">
-                        <h3>Kruzo Aero Chair</h3>
-                        <p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio </p>
-                        <p><a href="#">Read More</a></p>
+        <div class="mx-auto text-center wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h1 class="mb-3">What Our Clients Say</h1>
+            <p class="mb-5">Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit clita duo justo</p>
+        </div>
+        <div class="owl-carousel testimonial-carousel wow fadeInUp" data-wow-delay="0.1s">
+            <div class="testimonial-item bg-light rounded my-4">
+                <p class="fs-5"><i class="fa fa-quote-left fa-4x text-success mt-n4 me-3"></i>Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit sed stet lorem sit clita duo justo.</p>
+                <div class="d-flex align-items-center">
+                    <!-- <img class="img-fluid flex-shrink-0 rounded-circle" src="theme/imgFront/testimonial-1.jpg" style="width: 65px; height: 65px;"> -->
+                    <i class='fas fa-user-circle' style='font-size:48px;color:green'></i>
+                    <div class="ps-4">
+                        <h5 class="mb-1">Client Name</h5>
+                        <span>Profession</span>
                     </div>
                 </div>
             </div>
-
-            <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
-                <div class="product-item-sm d-flex">
-                    <div class="thumbnail">
-                        <img src="theme/images/product-3.png" alt="Image" class="img-fluid">
-                    </div>
-                    <div class="pt-3">
-                        <h3>Ergonomic Chair</h3>
-                        <p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio </p>
-                        <p><a href="#">Read More</a></p>
+            <div class="testimonial-item bg-light rounded my-4">
+                <p class="fs-5"><i class="fa fa-quote-left fa-4x text-success mt-n4 me-3"></i>Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit sed stet lorem sit clita duo justo.</p>
+                <div class="d-flex align-items-center">
+                    <!-- <img class="img-fluid flex-shrink-0 rounded-circle" src="theme/imgFront/testimonial-2.jpg" style="width: 65px; height: 65px;"> -->
+                    <i class='fas fa-user-circle' style='font-size:48px;color:green'></i>
+                    <div class="ps-4">
+                        <h5 class="mb-1">Client Name</h5>
+                        <span>Profession</span>
                     </div>
                 </div>
             </div>
-
+            <div class="testimonial-item bg-light rounded my-4">
+                <p class="fs-5"><i class="fa fa-quote-left fa-4x text-success mt-n4 me-3"></i>Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit sed stet lorem sit clita duo justo.</p>
+                <div class="d-flex align-items-center">
+                    <!-- <img class="img-fluid flex-shrink-0 rounded-circle" src="theme/imgFront/testimonial-3.jpg" style="width: 65px; height: 65px;"> -->
+                    <i class='fas fa-user-circle' style='font-size:48px;color:green'></i>
+                    <div class="ps-4">
+                        <h5 class="mb-1">Client Name</h5>
+                        <span>Profession</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-<!-- End Popular Product -->
+<!-- Testimonial End -->
 
-<!-- Start Testimonial Slider -->
-<div class="testimonial-section">
+
+<!-- Contact Start -->
+<div class="container-xxl py-6" id="contact">
     <div class="container">
-        <div class="row">
-            <div class="col-lg-7 mx-auto text-center">
-                <h2 class="section-title">Testimonials</h2>
-            </div>
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="col-lg-12">
-                <div class="testimonial-slider-wrap text-center">
-
-                    <div id="testimonial-nav">
-                        <span class="prev" data-controls="prev"><span class="fa fa-chevron-left"></span></span>
-                        <span class="next" data-controls="next"><span class="fa fa-chevron-right"></span></span>
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <h1 class="mb-3">Get In Touch</h1>
+                <p class="mb-4">The contact form is currently inactive. Get a functional and working contact form with Ajax & PHP in a few minutes. Just copy and paste the files, add a little code and you're done. <a href="https://htmlcodex.com/contact-form">Download Now</a>.</p>
+                <div class="d-flex mb-4">
+                    <div class="flex-shrink-0 btn-square rounded-circle bg-success text-white">
+                        <i class="fa fa-phone-alt"></i>
                     </div>
-
-                    <div class="testimonial-slider">
-
-                        <div class="item">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8 mx-auto">
-
-                                    <div class="testimonial-block text-center">
-                                        <blockquote class="mb-5">
-                                            <p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque.&rdquo;</p>
-                                        </blockquote>
-
-                                        <div class="author-info">
-                                            <div class="author-pic">
-                                                <img src="theme/images/person-1.png" alt="Maria Jones" class="img-fluid">
-                                            </div>
-                                            <h3 class="font-weight-bold">Maria Jones</h3>
-                                            <span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
-                                        </div>
-                                    </div>
-
-                                </div>
+                    <div class="ms-3">
+                        <p class="mb-2">Call Us</p>
+                        <h5 class="mb-0">+012 345 6789</h5>
+                    </div>
+                </div>
+                <div class="d-flex mb-4">
+                    <div class="flex-shrink-0 btn-square rounded-circle bg-success text-white">
+                        <i class="fa fa-envelope"></i>
+                    </div>
+                    <div class="ms-3">
+                        <p class="mb-2">Mail Us</p>
+                        <h5 class="mb-0">info@example.com</h5>
+                    </div>
+                </div>
+                <div class="d-flex mb-0">
+                    <div class="flex-shrink-0 btn-square rounded-circle bg-success text-white">
+                        <i class="fa fa-map-marker-alt"></i>
+                    </div>
+                    <div class="ms-3">
+                        <p class="mb-2">Our Office</p>
+                        <h5 class="mb-0">123 Street, New York, USA</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                <form>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="name" placeholder="Your Name">
+                                <label for="name">Your Name</label>
                             </div>
                         </div>
-                        <!-- END item -->
-
-                        <div class="item">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8 mx-auto">
-
-                                    <div class="testimonial-block text-center">
-                                        <blockquote class="mb-5">
-                                            <p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque.&rdquo;</p>
-                                        </blockquote>
-
-                                        <div class="author-info">
-                                            <div class="author-pic">
-                                                <img src="theme/images/person-1.png" alt="Maria Jones" class="img-fluid">
-                                            </div>
-                                            <h3 class="font-weight-bold">Maria Jones</h3>
-                                            <span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
-                                        </div>
-                                    </div>
-
-                                </div>
+                        <div class="col-md-6">
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="email" placeholder="Your Email">
+                                <label for="email">Your Email</label>
                             </div>
                         </div>
-                        <!-- END item -->
-
-                        <div class="item">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8 mx-auto">
-
-                                    <div class="testimonial-block text-center">
-                                        <blockquote class="mb-5">
-                                            <p>&ldquo;Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Integer convallis volutpat dui quis scelerisque.&rdquo;</p>
-                                        </blockquote>
-
-                                        <div class="author-info">
-                                            <div class="author-pic">
-                                                <img src="theme/images/person-1.png" alt="Maria Jones" class="img-fluid">
-                                            </div>
-                                            <h3 class="font-weight-bold">Maria Jones</h3>
-                                            <span class="position d-block mb-3">CEO, Co-Founder, XYZ Inc.</span>
-                                        </div>
-                                    </div>
-
-                                </div>
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="subject" placeholder="Subject">
+                                <label for="subject">Subject</label>
                             </div>
                         </div>
-                        <!-- END item -->
-
+                        <div class="col-12">
+                            <div class="form-floating">
+                                <textarea class="form-control" placeholder="Leave a message here" id="message" style="height: 150px"></textarea>
+                                <label for="message">Message</label>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-success rounded-pill py-3 px-5" type="submit">Send Message</button>
+                        </div>
                     </div>
-
-                </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
-<!-- End Testimonial Slider -->
-
-<!-- Start Blog Section -->
-<div class="blog-section">
-    <div class="container">
-        <div class="row mb-5">
-            <div class="col-md-6">
-                <h2 class="section-title">Recent Blog</h2>
-            </div>
-            <div class="col-md-6 text-start text-md-end">
-                <a href="#" class="more">View All Posts</a>
-            </div>
-        </div>
-
-        <div class="row">
-
-            <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
-                <div class="post-entry">
-                    <a href="#" class="post-thumbnail"><img src="theme/images/post-1.jpg" alt="Image" class="img-fluid"></a>
-                    <div class="post-content-entry">
-                        <h3><a href="#">First Time Home Owner Ideas</a></h3>
-                        <div class="meta">
-                            <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 19, 2021</a></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
-                <div class="post-entry">
-                    <a href="#" class="post-thumbnail"><img src="theme/images//post-2.jpg" alt="Image" class="img-fluid"></a>
-                    <div class="post-content-entry">
-                        <h3><a href="#">How To Keep Your Furniture Clean</a></h3>
-                        <div class="meta">
-                            <span>by <a href="#">Robert Fox</a></span> <span>on <a href="#">Dec 15, 2021</a></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-12 col-sm-6 col-md-4 mb-4 mb-md-0">
-                <div class="post-entry">
-                    <a href="#" class="post-thumbnail"><img src="theme/images//post-3.jpg" alt="Image" class="img-fluid"></a>
-                    <div class="post-content-entry">
-                        <h3><a href="#">Small Space Furniture Apartment Ideas</a></h3>
-                        <div class="meta">
-                            <span>by <a href="#">Kristin Watson</a></span> <span>on <a href="#">Dec 12, 2021</a></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-<!-- End Blog Section -->
+<!-- Contact End -->
 <?php include "include/footer.php"; ?>
 <?php include "include/footerJs.php"; ?>

@@ -87,20 +87,27 @@ try {
                             $request->draw=0;
                         }
                         foreach($results as $res) {                        
-                            ++$i;
                             if($res['is_status'] == 1){
-                                $act = "<a class='statusHide cursor-pointer text-danger' ids='Hide_".$res["fruits_id"]."' data-id='".$res["fruits_id"]."' data-fname='".$res['fruits_name']."' data-issts='".$res['is_status']."'><i class='fas fa-eye-slash pasword_show' aria-hidden='true' style='margin-left:15px;'></i></a><a class='statusShow cursor-pointer text-danger' style='display:none;' ids='Show_".$res["fruits_id"]."' data-id='".$res["fruits_id"]."' data-fname='".$res['fruits_name']."' data-issts='".$res['is_status']."'><i class='fas fa-eye pasword_hide' aria-hidden='true' style='margin-left:15px;'></i></a>";
+                                ++$i;
+                                $result [] = [
+                                    "s_no"        => $i,
+                                    'fruits_id'   => $res['fruits_id'],
+                                    "fruits_name" => $res["fruits_name"],
+                                    "is_status"   => $res['is_status'],
+                                    "action"      => "<a class='edit cursor-pointer' data-id='".$res['fruits_id']."' data-fname='".$res['fruits_name']."'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>&nbsp;&nbsp;&nbsp;<a class='delete cursor-pointer text-danger' data-id='".$res['fruits_id']."'><i class='fa fa-trash' aria-hidden='true'></i></a>",
+                                    "active"      => "<a class='statusHide cursor-pointer text-danger' ids='Hide_".$res["fruits_id"]."' data-id='".$res["fruits_id"]."' data-fname='".$res['fruits_name']."' data-issts='".$res['is_status']."'><i class='fas fa-eye-slash pasword_show' aria-hidden='true' style='margin-left:15px;'></i></a><a class='statusShow cursor-pointer text-danger' style='display:none;' ids='Show_".$res["fruits_id"]."' data-id='".$res["fruits_id"]."' data-fname='".$res['fruits_name']."' data-issts='".$res['is_status']."'><i class='fas fa-eye pasword_hide' aria-hidden='true' style='margin-left:15px;'></i></a>",                                   
+                                ];
                             } else{
-                                $act = "<a class='statusShow cursor-pointer text-danger' ids='Hide_".$res["fruits_id"]."' data-id='".$res["fruits_id"]."' data-fname='".$res['fruits_name']."' data-issts='".$res['is_status']."'><i class='fas fa-eye pasword_hide' aria-hidden='true' style='margin-left:15px;'></i></a><a class='statusHide cursor-pointer text-danger' style='display:none;' ids='Show_".$res["fruits_id"]."' data-id='".$res["fruits_id"]."' data-fname='".$res['fruits_name']."' data-issts='".$res['is_status']."'><i class='fas fa-eye pasword_hide' aria-hidden='true' style='margin-left:15px;'></i></a>";
+                                ++$i;
+                                $result [] = [
+                                    "s_no"        => $i,
+                                    'fruits_id'   => $res['fruits_id'],
+                                    "fruits_name" => $res["fruits_name"],
+                                    "is_status"   => $res['is_status'],
+                                    "action"      => "<a class='edit cursor-pointer' data-id='".$res['fruits_id']."' data-fname='".$res['fruits_name']."'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>&nbsp;&nbsp;&nbsp;<a class='delete cursor-pointer text-danger' data-id='".$res['fruits_id']."'><i class='fa fa-trash' aria-hidden='true'></i></a>",
+                                    "active"      => "<a class='statusShow cursor-pointer text-danger' ids='Hide_".$res["fruits_id"]."' data-id='".$res["fruits_id"]."' data-fname='".$res['fruits_name']."' data-issts='".$res['is_status']."'><i class='fas fa-eye pasword_hide' aria-hidden='true' style='margin-left:15px;'></i></a><a class='statusHide cursor-pointer text-danger' style='display:none;' ids='Show_".$res["fruits_id"]."' data-id='".$res["fruits_id"]."' data-fname='".$res['fruits_name']."' data-issts='".$res['is_status']."'><i class='fas fa-eye pasword_hide' aria-hidden='true' style='margin-left:15px;'></i></a>",                                   
+                                ];
                             }
-                            $result [] = [
-                                "s_no"        => $i,
-                                'fruits_id'   => $res['fruits_id'],
-                                "fruits_name" => $res["fruits_name"],
-                                "is_status"   => $res['is_status'],
-                                "action"      => "<a class='edit cursor-pointer' data-id='".$res['fruits_id']."' data-fname='".$res['fruits_name']."'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>&nbsp;&nbsp;&nbsp;<a class='delete cursor-pointer text-danger' data-id='".$res['fruits_id']."'><i class='fa fa-trash' aria-hidden='true'></i></a>",
-                                "active"      => $act
-                            ];
                         }
                         $response = [
                             'draw'              => intval($request->draw),

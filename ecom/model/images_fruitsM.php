@@ -3,11 +3,11 @@ require_once '../config/DBConnection.php';
 
 class PductImage{
 
-    Public $pduct_image_id, $fruits_id, $image_name, $product_images, $is_status, $is_active, $created_on, $created_by, $update_on, $update_by, $table_name, $db, $conn;
+    Public $pduct_image_id, $fruits_id, $image_name, $product_images, $is_status, $is_active, $created_on, $created_by, $update_on, $updated_by, $table_name, $db, $conn;
 
     function __construct(){
-        $this->pduct_image_id = "";
-        $this->fruits_id = "";
+        $this->pduct_image_id = 0;
+        $this->fruits_id = 0;
         $this->image_name = "";
         $this->product_images = "";
         $this->is_active = 1;
@@ -181,6 +181,19 @@ class PductImage{
         return $result['last_id'];
     }
 
+    function update_bill_path()
+    {
+        $data = [
+            'pduct_image_id' => $this->pduct_image_id,
+            'product_images' => $this->product_images,
+            'updated_by'     => $this->updated_by
+        ];
+        $sql = "UPDATE " . $this->table_name . " SET product_images=:product_images ,updated_by=:updated_by WHERE pduct_image_id=:pduct_image_id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute($data);
+        $stmt->closeCursor();
+        return true;
+    }
 
 
 }

@@ -61,7 +61,7 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="fee">Upload Image</label>
-                                        <input type="hidden" id="imagePath" value=""/>
+                                        <!-- <input type="hidden" id="imagePath" value=""/> -->
                                         <input type="file" name="product_images" onchange="encodeImagetoBase64(this, 'image_file_base64')" id="product_images" class="form-control"/>
                                         <input type="hidden" name="image_file_base64" id="image_file_base64" value="" />
                                     </div>
@@ -251,13 +251,13 @@
                         console.log(request);
                     },
                 }).done(function(Response) {
-                    // $("#lawyer_advisory_modal").modal('hide');
-                    // $('#lawyer_advisory_table').DataTable().ajax.reload();
-                    // $("#message").html(Response.msg).show();
-                    // $("#notice").removeClass("d-none");
-                    // $("#notice").removeClass("hide");
-                    // $("#notice").addClass("d-block");
-                    // $("#notice").addClass("show");
+                    $("#lawyer_advisory_modal").modal('hide');
+                    $('#lawyer_advisory_table').DataTable().ajax.reload();
+                    $("#message").html(Response.msg).show();
+                    $("#notice").removeClass("d-none");
+                    $("#notice").removeClass("hide");
+                    $("#notice").addClass("d-block");
+                    $("#notice").addClass("show");
                 }).fail(function(jqXHR, exception) {
                     var msg = '';
                     if (jqXHR.status === 0) {

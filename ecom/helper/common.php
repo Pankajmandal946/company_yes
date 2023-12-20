@@ -95,7 +95,7 @@ if (!function_exists('createFileFromBase64AllExtn')) {
             "PNG" => "data:image/png;base64",
             "PDF" => "data:application/pdf;base64",
             "jpg" => "data:image/jpg;base64",
-            "JPEG"=> "data:image/jpg;base64",
+            "JPEG"=> "data:image/jpeg;base64",
         ];
         $FileArray = explode(",", $Base64);
         foreach ($shortArray as $key => $value) {

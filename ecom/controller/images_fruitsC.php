@@ -13,9 +13,9 @@ try {
                     @session_start();
                     $user_id = $_SESSION["c_x_user_id"];
                     if($request->action=='add') {
-                        $pdrctImg->pduct_image_id = $request->pduct_image_id;
                         $pdrctImg->fruits_id      = $request->fruits_id;
                         $pdrctImg->image_name     = $request->image_name;
+                        $pdrctImg->created_by = $user_id;
                         if ($pdrctImg->insert()) {
                             $pduct_image_id = $pdrctImg->last_insert_id();
                             if (isset($request->image_file_base64) && $request->image_file_base64 != '') {
@@ -23,8 +23,24 @@ try {
                                 if (createFileFromBase64AllExtn($request->image_file_base64, "../upload_images/", $file_name)) {
                                     $pdrctImg->pduct_image_id = $pduct_image_id;
                                     $pdrctImg->product_images = $file_name . '.' . get_string_between($request->image_file_base64, '/', ';base64');
-                                    print_r($pdrctImg);exit;
-
+                                    $pdrctImg->updated_by = $user_id;
+                                    if ($pdrctImg->update_bill_path()) {
+                                        // print_r($pdrctImg);exit;
+                                        $response = [
+                                            'success' => 1,
+                                            'code' => 200,
+                                            'msg' => 'Fruits Images updated successfully!'
+                                        ];
+                                        $pdrctImg->conn->commit();
+                                        http_response_code(200);
+                                        echo json_encode($response);
+                                    } else {
+                                        $pdrctImg->conn->rollBack();
+                                        throw new Exception("Error while saving bill file", 400);
+                                    }
+                                } else {
+                                    $pdrctImg->conn->rollBack();
+                                    throw new Exception("Error while uploading bill file", 400);
                                 }
                             } else {
                                 $response = [

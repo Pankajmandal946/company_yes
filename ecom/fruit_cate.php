@@ -106,10 +106,6 @@
 <script src="theme/plugins/jquery-validation/additional-methods.min.js"></script>
 <script>
     $(function () {
-        $('#datetimepicker').datetimepicker({
-            format: 'DD-MM-YYYY'
-        });
-
         var DataTable =  $("#fruitsName_table").DataTable({
             "responsive": true,
             "lengthChange": true,
@@ -156,8 +152,6 @@
             $("#fruits_name").val("");
             $("#fruits_name").val("").prop('disabled', false);
 
-            $("#sort_code").val("");
-            $("#sort_code").val("").prop('disabled', false);
             $('#fruits_name_form').trigger("reset");
         });
         $.validator.setDefaults({

@@ -1,4 +1,7 @@
-<?php  require_once '../model/images_fruitsM.php';
+<?php  
+require_once '../model/images_fruitsM.php';
+require_once '../helper/common.php';
+
 try {
     if(isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD']=='POST') {
         $json = file_get_contents('php://input');
@@ -7,18 +10,32 @@ try {
             if(isset($request) && !empty($request)) {
                 if(isset($request->action)) {
                     $pdrctImg = new PductImage();
+                    @session_start();
+                    $user_id = $_SESSION["c_x_user_id"];
                     if($request->action=='add') {
-                        $fruitsCate->fruits_name   = $request->fruits_name;
-                        if($fruitsCate->check() === false) {
-                            $fruitsCate->insert();
-                            $response = [
-                                'success' => 1,
-                                'code' => 200,
-                                'msg' => 'Fruits Name successfully added!'
-                            ];
+                        $pdrctImg->pduct_image_id = $request->pduct_image_id;
+                        $pdrctImg->fruits_id      = $request->fruits_id;
+                        $pdrctImg->image_name     = $request->image_name;
+                        if ($pdrctImg->insert()) {
+                            $pduct_image_id = $pdrctImg->last_insert_id();
+                            if (isset($request->image_file_base64) && $request->image_file_base64 != '') {
+                                $file_name = $pduct_image_id . '_' . date('YmdHis');
+                                if (createFileFromBase64AllExtn($request->image_file_base64, "../upload_images/", $file_name)) {
+                                    $pdrctImg->pduct_image_id = $pduct_image_id;
+                                    $pdrctImg->product_images = $file_name . '.' . get_string_between($request->image_file_base64, '/', ';base64');
+                                    print_r($pdrctImg);exit;
 
-                            http_response_code(200);
-                            echo json_encode($response);
+                                }
+                            } else {
+                                $response = [
+                                    'success' => 1,
+                                    'code' => 200,
+                                    'msg' => 'Fruits Name successfully added!'
+                                ];
+
+                                http_response_code(200);
+                                echo json_encode($response);
+                            }
                         } else {
                             throw new Exception('Fruits Name Already Exists',400);
                         }

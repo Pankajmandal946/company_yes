@@ -11,7 +11,6 @@ class PductImage{
         $this->image_name = "";
         $this->product_images = "";
         $this->is_active = 1;
-        $this->is_status = 1;
         $this->created_by = 0;
         $this->updated_by = 0;
         $this->table_name = "pduct_image";
@@ -22,13 +21,13 @@ class PductImage{
     public function insert(){
         $data = [
             "image_name"     => $this->image_name,
+            "fruits_id"      => $this->fruits_id,
             "product_images" => $this->product_images,
             "is_active"      => $this->is_active,
-            "is_status"      => $this->is_status,
             "created_by"     => $this->created_by
         ];
 
-        $sql = "INSERT INTO ".$this->table_name." (image_name, product_images, is_active, is_status, created_by) VALUES(:image_name, :product_images, :is_active, :is_status, :created_by)";
+        $sql = "INSERT INTO ".$this->table_name." (image_name, fruits_id, product_images, is_active, created_by) VALUES(:image_name, :fruits_id, :product_images, :is_active, :created_by)";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute($data);
         // $last_query = $stmt->queryString;
@@ -149,15 +148,15 @@ class PductImage{
     public function check() {
 
         $data = [
-            'fruits_name'   => $this->fruits_name,
+            'image_name'   => $this->image_name,
             'is_active'     => 1,
         ];
-        $stmt = $this->conn->prepare("SELECT fruits_id FROM ".$this->table_name." WHERE fruits_name = :fruits_name AND is_active=:is_active");
+        $stmt = $this->conn->prepare("SELECT pduct_image_id FROM ".$this->table_name." WHERE image_name = :image_name AND is_active=:is_active");
         $stmt->execute($data);
         $count = $stmt->rowCount();
         if($count>0) {
             $row = $stmt->fetch();
-            $this->fruits_id = $row['fruits_id'];
+            $this->fruits_id = $row['pduct_image_id'];
             return true;
         } else 
             return false;
@@ -172,7 +171,15 @@ class PductImage{
         return $count;
     }
 
-
+    function last_insert_id()
+    {
+        $stmt = $this->conn->prepare("SELECT LAST_INSERT_ID() as last_id FROM " . $this->table_name);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        $count = $stmt->rowCount();
+        $stmt->closeCursor();
+        return $result['last_id'];
+    }
 
 
 

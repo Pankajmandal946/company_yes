@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Dec 12, 2023 at 11:53 AM
+-- Generation Time: Dec 20, 2023 at 02:32 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 7.4.33
 
@@ -73,31 +73,58 @@ CREATE TABLE `fruits_categories` (
 --
 
 INSERT INTO `fruits_categories` (`fruits_id`, `fruits_name`, `is_status`, `is_active`, `created_on`, `updated_on`) VALUES
-(1, 'Apple', '2', '1', '2023-11-25 17:41:27', '2023-11-25 13:19:39'),
+(1, 'Apple', '1', '1', '2023-11-25 17:41:27', '2023-12-16 10:51:51'),
 (2, 'Drupe', '1', '1', '2023-11-25 17:42:00', '2023-11-25 12:12:00'),
 (3, 'Grape', '1', '1', '2023-11-25 17:42:14', '2023-11-25 12:12:14'),
 (4, 'Mango', '1', '1', '2023-11-25 17:43:48', '2023-11-25 12:13:48'),
 (5, 'Pome', '1', '1', '2023-11-25 17:44:04', '2023-11-25 12:14:04'),
 (6, 'Orange', '1', '1', '2023-11-25 17:44:13', '2023-11-25 12:14:13'),
-(7, 'Berry', '1', '1', '2023-11-25 17:44:45', '2023-11-25 12:14:45'),
+(7, 'Berry', '1', '1', '2023-11-25 17:44:45', '2023-12-15 13:06:20'),
 (8, 'Pineapple', '1', '1', '2023-11-25 17:44:55', '2023-11-25 12:14:55'),
-(9, 'Banana', '1', '1', '2023-11-25 17:45:22', '2023-11-25 12:15:22'),
+(9, 'Banana', '1', '1', '2023-11-25 17:45:22', '2023-12-15 13:06:19'),
 (10, 'Strawberry', '1', '1', '2023-11-25 17:45:35', '2023-11-25 12:15:35'),
 (11, 'Cherries', '1', '1', '2023-11-25 17:45:46', '2023-11-25 12:15:46'),
 (12, 'Watermelon', '1', '1', '2023-11-25 17:45:56', '2023-11-25 12:15:56'),
-(13, 'Aggregate fruit', '1', '1', '2023-11-25 17:46:07', '2023-11-25 13:08:09'),
+(13, 'Aggregate fruit', '1', '1', '2023-11-25 17:46:07', '2023-12-16 07:39:25'),
 (14, 'Plum', '1', '1', '2023-11-25 17:46:17', '2023-11-25 12:16:17'),
 (15, 'Grapefruit', '1', '1', '2023-11-25 17:46:26', '2023-11-25 12:16:26'),
 (16, 'Kiwifruit', '1', '1', '2023-11-25 17:46:36', '2023-11-25 12:16:36'),
 (17, 'Peach', '1', '1', '2023-11-25 17:46:47', '2023-11-25 12:16:47'),
 (18, 'Hesperidium', '1', '1', '2023-11-25 17:46:56', '2023-11-25 12:16:56'),
-(19, 'Apricot', '1', '1', '2023-11-25 17:47:05', '2023-11-25 13:08:12'),
+(19, 'Apricot', '1', '1', '2023-11-25 17:47:05', '2023-12-15 13:11:08'),
 (20, 'Citrus Fruits', '1', '1', '2023-11-25 17:47:15', '2023-11-25 12:17:15'),
 (21, 'Nut', '1', '1', '2023-11-25 17:47:24', '2023-11-25 12:17:24'),
 (22, 'Multiple fruit', '1', '1', '2023-11-25 17:47:34', '2023-11-25 12:17:34'),
 (23, 'Blueberry', '1', '1', '2023-11-25 17:47:44', '2023-11-25 12:17:44'),
 (24, 'Guava', '1', '1', '2023-11-25 17:47:53', '2023-11-25 12:17:53'),
-(25, 'Blackberries', '1', '1', '2023-11-25 17:49:09', '2023-11-25 12:19:09');
+(25, 'Blackberries', '1', '1', '2023-11-25 17:49:09', '2023-12-15 13:06:20');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pduct_image`
+--
+
+CREATE TABLE `pduct_image` (
+  `pduct_image_id` int(11) NOT NULL,
+  `fruits_id` int(11) NOT NULL,
+  `image_name` varchar(300) NOT NULL,
+  `product_images` varchar(2000) NOT NULL,
+  `is_active` varchar(1) NOT NULL DEFAULT '1',
+  `created_by` int(11) DEFAULT NULL,
+  `created_on` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_by` int(11) DEFAULT NULL,
+  `updated_on` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `pduct_image`
+--
+
+INSERT INTO `pduct_image` (`pduct_image_id`, `fruits_id`, `image_name`, `product_images`, `is_active`, `created_by`, `created_on`, `updated_by`, `updated_on`) VALUES
+(1, 1, 'Green Apple', 'Green Apple', '1', NULL, '2023-12-16 15:49:51', NULL, '2023-12-16 11:28:26'),
+(2, 2, 'Drupe', 'Drupe', '1', NULL, '2023-12-16 16:54:14', NULL, '2023-12-16 11:24:14'),
+(16, 13, 'pankaj', '', '1', 0, '2023-12-20 18:59:42', NULL, '2023-12-20 13:29:42');
 
 -- --------------------------------------------------------
 
@@ -127,7 +154,8 @@ CREATE TABLE `registerUserLogin_New` (
 --
 
 INSERT INTO `registerUserLogin_New` (`register_login_id`, `register_name`, `register_email_id`, `username`, `password`, `last_login_time`, `last_login_ip`, `password_change_time`, `is_active`, `login_account`, `created_by`, `created_on`, `updated_by`, `updated_on`) VALUES
-(1, 'admin', 'admin@gmail.com', 'admin', '$2y$12$N6Bgxiy/ngMlq2TqJR64/.VI0qjBuyZpSKBjr7gtkJcwkE/uPN0fy', '2023-10-10 13:27:29', '1', NULL, '1', '1', 0, '2023-05-09 12:12:47', 1, '2023-10-12 06:44:41');
+(1, 'admin', 'admin@gmail.com', 'admin', '$2y$12$N6Bgxiy/ngMlq2TqJR64/.VI0qjBuyZpSKBjr7gtkJcwkE/uPN0fy', '2023-10-10 13:27:29', '1', NULL, '1', '1', 0, '2023-05-09 12:12:47', 1, '2023-10-12 06:44:41'),
+(48, 'bsapanakj', 'bsapankajdk@gmail.com', '', '$2y$12$enONuaQ5kxq8SBweHeJTbuRU482QNL3PfulwSvhL4N.SEtH9sMHRW', NULL, NULL, NULL, '1', '1', 0, '2023-12-15 11:06:22', 0, '2023-12-15 05:36:22');
 
 -- --------------------------------------------------------
 
@@ -188,7 +216,7 @@ CREATE TABLE `user_login` (
 --
 
 INSERT INTO `user_login` (`user_login_id`, `user_id`, `username`, `password`, `last_login_time`, `last_login_ip`, `default_password_change`, `password_change_time`, `is_active`, `created_by`, `created_on`, `updated_by`, `updated_on`) VALUES
-(1, 1, 'admin', '$2y$12$N6Bgxiy/ngMlq2TqJR64/.VI0qjBuyZpSKBjr7gtkJcwkE/uPN0fy', '2023-12-12 05:24:39', '1', 1, NULL, '1', 0, '2023-05-09 12:12:47', 1, '2023-12-12 04:24:39'),
+(1, 1, 'admin', '$2y$12$N6Bgxiy/ngMlq2TqJR64/.VI0qjBuyZpSKBjr7gtkJcwkE/uPN0fy', '2023-12-19 14:25:55', '1', 1, NULL, '1', 0, '2023-05-09 12:12:47', 1, '2023-12-19 13:25:55'),
 (12, 15, 'pankaj', '$2y$12$ySwQGAh./RHlT8IzyS5.HeuLSn5Jb3D08Yfn3XSGy1rdBPe8TT.9O', '2023-10-10 13:28:33', '', 1, NULL, '1', 1, '2023-10-10 16:55:29', 15, '2023-10-10 11:28:33');
 
 -- --------------------------------------------------------
@@ -238,6 +266,13 @@ ALTER TABLE `fruits_categories`
   ADD UNIQUE KEY `fruits_name` (`fruits_name`) USING HASH;
 
 --
+-- Indexes for table `pduct_image`
+--
+ALTER TABLE `pduct_image`
+  ADD PRIMARY KEY (`pduct_image_id`),
+  ADD UNIQUE KEY `fruits_id` (`fruits_id`);
+
+--
 -- Indexes for table `registerUserLogin_New`
 --
 ALTER TABLE `registerUserLogin_New`
@@ -284,10 +319,16 @@ ALTER TABLE `fruits_categories`
   MODIFY `fruits_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
+-- AUTO_INCREMENT for table `pduct_image`
+--
+ALTER TABLE `pduct_image`
+  MODIFY `pduct_image_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
 -- AUTO_INCREMENT for table `registerUserLogin_New`
 --
 ALTER TABLE `registerUserLogin_New`
-  MODIFY `register_login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `register_login_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `user`

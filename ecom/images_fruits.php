@@ -13,7 +13,7 @@
                     <h1 class="m-0">Fruit of Images</h1>
                 </div><!-- /.col -->
                 <div class="col-sm-6 d-flex justify-content-end">
-                    <button type="button" class="btn btn-primary" id="add_fruitCategory" data-toggle="modal" data-target="#fruits_name_modal">
+                    <button type="button" class="btn btn-primary" id="images_fruit" data-toggle="modal" data-target="#images_fruit_modal">
                         Click to Add Fruit Images
                     </button>
                 </div><!-- /.col -->
@@ -26,16 +26,16 @@
     <!-- Start content -->
     <section class="content">
         <!-- Add Client Modal -->
-        <div class="modal fade" id="fruits_name_modal" role="dialog" aria-hidden="true">
+        <div class="modal fade" id="images_fruit_modal" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-md" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="fruits_name_modalLabel" >Add Fruit Images</h5>
+                        <h5 class="modal-title" id="images_fruit_modalLabel" >Add Fruit Images</h5>
                         <button type="button" class="close" id="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form id="fruits_name_form" name="fruits_name_form" method="post">
+                    <form id="images_fruit_form" name="images_fruit_form" method="post">
                         <div class="modal-body">
                             <!-- client code  -->
                             <div class="row">
@@ -46,8 +46,8 @@
                                 <input type="hidden" name="pduct_image_id" id="pduct_image_id" class="form-control" value="0">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="fruits_name">Image Fruits Name<span class="must">*</span></label>
-                                        <input type="text" name="fruits_name" id="fruits_name" class="form-control select2bs4">
+                                        <label for="image_name">Image Fruits Name<span class="must">*</span></label>
+                                        <input type="text" name="image_name" id="image_name" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col">
@@ -61,9 +61,9 @@
                                 <div class="col">
                                     <div class="form-group">
                                         <label for="fee">Upload Image</label>
-                                        <input type="hidden" id="billPath" value=""/>
-                                        <input type="file" name="bill_upload" onchange="encodeImagetoBase64(this, 'bill_file_base64')" id="bill_upload" class="form-control"/>
-                                        <input type="hidden" name="bill_file_base64" id="bill_file_base64" value="" />
+                                        <input type="hidden" id="imagePath" value=""/>
+                                        <input type="file" name="product_images" onchange="encodeImagetoBase64(this, 'image_file_base64')" id="product_images" class="form-control"/>
+                                        <input type="hidden" name="image_file_base64" id="image_file_base64" value="" />
                                     </div>
                                 </div>
                             </div>
@@ -89,7 +89,7 @@
             <!-- <div class="col-md-12" id="result"></div> -->
             <!-- /.card-header -->
             <div class="card-body">
-                <table id="fruitsName_table" class="table table-bordered table-striped">
+                <table id="imagesFruit_table" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th width='8%'>S.No.</th>
@@ -170,11 +170,7 @@
     })
 
     $(function () {
-        $('#datetimepicker').datetimepicker({
-            format: 'DD-MM-YYYY'
-        });
-
-        var DataTable =  $("#fruitsName_table").DataTable({
+        var DataTable =  $("#imagesFruit_table").DataTable({
             "responsive": true,
             "lengthChange": true,
             "autoWidth": false,
@@ -205,44 +201,46 @@
         }).buttons().container().appendTo('#fruitsName_table_wrapper .col-md-6:eq(0)');
 
         // Add Button click
-        let title = $("#fruits_name_modalLabel");
-        let save = $("#save");
-        // from submit
-        $(document).on('click','#add_fruitCategory',function(){
-            title.html("Add Fruits");
-            // save.html("Done");
+        $(document).on('click', '#images_fruit', function() {
+            // $("#lawyer_advisory_modal_label").html("Add Senior Lawyer Advisory");
+            $("#save").html("Save");
+            $("#pduct_image_id").val(0);
             $("#fruits_id").val(0);
-            let fruits_name= $("#fruits_name");
-            let fruits_name_error = $("#fruits_name-error");
-            fruits_name.removeClass('is-invalid');
-            fruits_name_error.hide();
-            $("#msg").hide();
+            $("#image_name").val('');
+            $("#product_images").val('');
+            $("#image_file_base64").val('');
             
-            $("#fruits_name").val("");
-            $("#fruits_name").val("").prop('disabled', false);
-
-            $("#sort_code").val("");
-            $("#sort_code").val("").prop('disabled', false);
-            $('#fruits_name_form').trigger("reset");
+            $("#pduct_image_id").removeClass('is-invalid');
+            $("#fruits_id").removeClass('is-invalid');
+            $("#image_name").removeClass('is-invalid');
+            
+            $("#pduct_image_id-error").hide();
+            $("#fruits_id-error").hide();
+            $("#image_name-error").hide();
+            $("#msg").hide();
         });
         $.validator.setDefaults({
-            submitHandler: function (e) {
+            submitHandler: function(e) {
+                let pduct_image_id = $.trim($("#pduct_image_id").val());
                 let fruits_id = $.trim($("#fruits_id").val());
-                let fruits_name = $.trim($("#fruits_name").val());
-             
+                let image_name = $.trim($("#image_name").val());
+                let image_file_base64 = $("#image_file_base64").val();
+                
                 let action = 'add';
-                if(fruits_id>0) {
+                if (pduct_image_id > 0) {
                     action = 'update';
                 }
                 let arr = {
-                    action : action,
+                    action: action,
+                    pduct_image_id,pduct_image_id,
                     fruits_id: fruits_id,
-                    fruits_name: fruits_name, 
+                    image_name: image_name,
+                    image_file_base64:image_file_base64
                 };
-                var request = JSON.stringify(arr);                
+                var request = JSON.stringify(arr);
                 $.ajax({
                     method: "POST",
-                    url: "controller/fruit_cateC.php",
+                    url: "controller/images_fruitsC.php",
                     data: request,
                     dataType: "JSON",
                     async: false,
@@ -252,17 +250,15 @@
                     beforeSend: function() {
                         console.log(request);
                     },
-                }).done(function (Response) {
-                    $("#fruits_name_modal").modal('hide');
-                    $('#fruitsName_table').DataTable().ajax.reload();
-                    $("#message").html(Response.msg).show();
-                    $("#fruits_id").val(0);
-                    $("#fruits_name").val('');
-                    $("#notice").removeClass("d-none");
-                    $("#notice").removeClass("hide");
-                    $("#notice").addClass("d-block");
-                    $("#notice").addClass("show");
-                }).fail(function (jqXHR, exception) {
+                }).done(function(Response) {
+                    // $("#lawyer_advisory_modal").modal('hide');
+                    // $('#lawyer_advisory_table').DataTable().ajax.reload();
+                    // $("#message").html(Response.msg).show();
+                    // $("#notice").removeClass("d-none");
+                    // $("#notice").removeClass("hide");
+                    // $("#notice").addClass("d-block");
+                    // $("#notice").addClass("show");
+                }).fail(function(jqXHR, exception) {
                     var msg = '';
                     if (jqXHR.status === 0) {
                         msg = 'Not connect.\n Verify Network.';
@@ -280,22 +276,22 @@
                         msg = 'Uncaught Error.\n' + jqXHR.responseJSON.msg;
                     }
                     $("#message").html(msg).show();
-                }).always(function (xhr) {
+                }).always(function(xhr) {
                     console.log(xhr);
                 });
             }
         });
         // form validation
-        $('#fruits_name_form').validate({
+        $('#images_fruit_form').validate({
             rules: {
-                fruits_name: {
+                image_name: {
                     required: true,
                     minlength: 3
                 },
                
             },
             messages: {
-                fruits_name: {
+                image_name: {
                     required: "Please enter a Fruits Names",
                     minlength: "Fruits Names must be at least 3 characters long"
                 },
@@ -315,177 +311,186 @@
             }
         });
 
-        $(document).on('click','.edit',function(e){
-            save.html("Done");
-            let fruits_id = $(this).data('id');
-            let fruits_name = $(this).data('fname');
-            $("#fruits_id").val(fruits_id);
-            $("#fruits_name").val(fruits_name);
-            $("#fruits_name_modal").modal('show');
-        });
+        // $(document).on('click','.edit',function(e){
+        //     save.html("Done");
+        //     let fruits_id = $(this).data('id');
+        //     let fruits_name = $(this).data('fname');
+        //     $("#fruits_id").val(fruits_id);
+        //     $("#fruits_name").val(fruits_name);
+        //     $("#fruits_name_modal").modal('show');
+        // });
 
-        $(document).on('click','.delete',function(e) {
-            if (confirm("Are you sure delete this Case Detail!")) {
-                let fruits_id = $(this).data('id');
-                let arr = { 
-                    action : 'delete',
-                    fruits_id: fruits_id
-                };
-                var request = JSON.stringify(arr); 
-                $.ajax({
-                    method: "POST",
-                    url: "controller/fruit_cateC.php",
-                    data: request,
-                    dataType: "JSON",
-                    async: false,
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    beforeSend: function() {
-                        console.log(request);
-                    },
-                }).done(function (Response) {
-                    $('#fruitsName_table').DataTable().ajax.reload();
-                    $("#message").html(Response.msg).show();
-                    $("#notice").removeClass("d-none");
-                    $("#notice").removeClass("hide");
-                    $("#notice").addClass("d-block");
-                    $("#notice").addClass("show");
-                }).fail(function (jqXHR, exception) {
-                    var msg = '';
-                    if (jqXHR.status === 0) {
-                        msg = 'Not connect.\n Verify Network.';
-                    } else if (jqXHR.status == 404) {
-                        msg = 'Requested page not found. [404]';
-                    } else if (jqXHR.status == 500) {
-                        msg = 'Internal Server Error [500].';
-                    } else if (exception === 'parsererror') {
-                        msg = 'Requested JSON parse failed.';
-                    } else if (exception === 'timeout') {
-                        msg = 'Time out error.';
-                    } else if (exception === 'abort') {
-                        msg = 'Ajax request aborted.';
-                    } else {
-                        msg = 'Uncaught Error.\n' + jqXHR.responseJSON.msg;
-                    }
-                    $("#message").html(msg).show();
-                }).always(function (xhr) {
-                    console.log(xhr);
-                });
-            }
-        });
+        // $(document).on('click','.delete',function(e) {
+        //     if (confirm("Are you sure delete this Case Detail!")) {
+        //         let fruits_id = $(this).data('id');
+        //         let arr = { 
+        //             action : 'delete',
+        //             fruits_id: fruits_id
+        //         };
+        //         var request = JSON.stringify(arr); 
+        //         $.ajax({
+        //             method: "POST",
+        //             url: "controller/fruit_cateC.php",
+        //             data: request,
+        //             dataType: "JSON",
+        //             async: false,
+        //             headers: {
+        //                 "Content-Type": "application/json"
+        //             },
+        //             beforeSend: function() {
+        //                 console.log(request);
+        //             },
+        //         }).done(function (Response) {
+        //             $('#fruitsName_table').DataTable().ajax.reload();
+        //             $("#message").html(Response.msg).show();
+        //             $("#notice").removeClass("d-none");
+        //             $("#notice").removeClass("hide");
+        //             $("#notice").addClass("d-block");
+        //             $("#notice").addClass("show");
+        //         }).fail(function (jqXHR, exception) {
+        //             var msg = '';
+        //             if (jqXHR.status === 0) {
+        //                 msg = 'Not connect.\n Verify Network.';
+        //             } else if (jqXHR.status == 404) {
+        //                 msg = 'Requested page not found. [404]';
+        //             } else if (jqXHR.status == 500) {
+        //                 msg = 'Internal Server Error [500].';
+        //             } else if (exception === 'parsererror') {
+        //                 msg = 'Requested JSON parse failed.';
+        //             } else if (exception === 'timeout') {
+        //                 msg = 'Time out error.';
+        //             } else if (exception === 'abort') {
+        //                 msg = 'Ajax request aborted.';
+        //             } else {
+        //                 msg = 'Uncaught Error.\n' + jqXHR.responseJSON.msg;
+        //             }
+        //             $("#message").html(msg).show();
+        //         }).always(function (xhr) {
+        //             console.log(xhr);
+        //         });
+        //     }
+        // });
 
-        $(document).on('click','.statusHide',function(e){
-            let fruits_id = $(this).data('id');
-            let is_status = $(this).data('issts');
-            let fruits_name = $(this).data('fname');
+        // $(document).on('click','.statusHide',function(e){
+        //     let fruits_id = $(this).data('id');
+        //     let is_status = $(this).data('issts');
+        //     let fruits_name = $(this).data('fname');
             
-            if(is_status == 1){
-                let arr = { 
-                    action : 'statusHide',
-                    fruits_id:fruits_id,
-                    is_status: is_status,
-                    fruits_name:fruits_name
-                };
-                var request = JSON.stringify(arr);
-                $.ajax({
-                        method: "POST",
-                        url: "controller/fruit_cateC.php",
-                        data: request,
-                        dataType: "JSON",
-                        async: false,
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        beforeSend: function() {
-                            console.log(request);
-                        },
-                    }).done(function (Response) {
-                        $('#fruitsName_table').DataTable().ajax.reload();
-                        $("#message").html(Response.msg).show();
-                        $("#notice").removeClass("d-none");
-                        $("#notice").removeClass("hide");
-                        $("#notice").addClass("d-block");
-                        $("#notice").addClass("show");
-                    }).fail(function (jqXHR, exception) {
-                        var msg = '';
-                        if (jqXHR.status === 0) {
-                            msg = 'Not connect.\n Verify Network.';
-                        } else if (jqXHR.status == 404) {
-                            msg = 'Requested page not found. [404]';
-                        } else if (jqXHR.status == 500) {
-                            msg = 'Internal Server Error [500].';
-                        } else if (exception === 'parsererror') {
-                            msg = 'Requested JSON parse failed.';
-                        } else if (exception === 'timeout') {
-                            msg = 'Time out error.';
-                        } else if (exception === 'abort') {
-                            msg = 'Ajax request aborted.';
-                        } else {
-                            msg = 'Uncaught Error.\n' + jqXHR.responseJSON.msg;
-                        }
-                        $("#message").html(msg).show();
-                    }).always(function (xhr) {
-                        console.log(xhr);
-                });
-            }
-        });
+        //     if(is_status == 1){
+        //         let arr = { 
+        //             action : 'statusHide',
+        //             fruits_id:fruits_id,
+        //             is_status: is_status,
+        //             fruits_name:fruits_name
+        //         };
+        //         var request = JSON.stringify(arr);
+        //         $.ajax({
+        //                 method: "POST",
+        //                 url: "controller/fruit_cateC.php",
+        //                 data: request,
+        //                 dataType: "JSON",
+        //                 async: false,
+        //                 headers: {
+        //                     "Content-Type": "application/json"
+        //                 },
+        //                 beforeSend: function() {
+        //                     console.log(request);
+        //                 },
+        //             }).done(function (Response) {
+        //                 $('#fruitsName_table').DataTable().ajax.reload();
+        //                 $("#message").html(Response.msg).show();
+        //                 $("#notice").removeClass("d-none");
+        //                 $("#notice").removeClass("hide");
+        //                 $("#notice").addClass("d-block");
+        //                 $("#notice").addClass("show");
+        //             }).fail(function (jqXHR, exception) {
+        //                 var msg = '';
+        //                 if (jqXHR.status === 0) {
+        //                     msg = 'Not connect.\n Verify Network.';
+        //                 } else if (jqXHR.status == 404) {
+        //                     msg = 'Requested page not found. [404]';
+        //                 } else if (jqXHR.status == 500) {
+        //                     msg = 'Internal Server Error [500].';
+        //                 } else if (exception === 'parsererror') {
+        //                     msg = 'Requested JSON parse failed.';
+        //                 } else if (exception === 'timeout') {
+        //                     msg = 'Time out error.';
+        //                 } else if (exception === 'abort') {
+        //                     msg = 'Ajax request aborted.';
+        //                 } else {
+        //                     msg = 'Uncaught Error.\n' + jqXHR.responseJSON.msg;
+        //                 }
+        //                 $("#message").html(msg).show();
+        //             }).always(function (xhr) {
+        //                 console.log(xhr);
+        //         });
+        //     }
+        // });
 
-        $(document).on('click','.statusShow',function(e){
-            let fruits_id = $(this).data('id');
-            let is_status = $(this).data('issts');
-            let fruits_name = $(this).data('fname');
+        // $(document).on('click','.statusShow',function(e){
+        //     let fruits_id = $(this).data('id');
+        //     let is_status = $(this).data('issts');
+        //     let fruits_name = $(this).data('fname');
             
-            if(is_status == 2){
-                let arr = { 
-                    action : 'statusShow',
-                    fruits_id:fruits_id,
-                    is_status: is_status,
-                    fruits_name:fruits_name
-                };
-                var request = JSON.stringify(arr);
-                $.ajax({
-                        method: "POST",
-                        url: "controller/fruit_cateC.php",
-                        data: request,
-                        dataType: "JSON",
-                        async: false,
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        beforeSend: function() {
-                            console.log(request);
-                        },
-                    }).done(function (Response) {
-                        $('#fruitsName_table').DataTable().ajax.reload();
-                        $("#message").html(Response.msg).show();
-                        $("#notice").removeClass("d-none");
-                        $("#notice").removeClass("hide");
-                        $("#notice").addClass("d-block");
-                        $("#notice").addClass("show");
-                    }).fail(function (jqXHR, exception) {
-                        var msg = '';
-                        if (jqXHR.status === 0) {
-                            msg = 'Not connect.\n Verify Network.';
-                        } else if (jqXHR.status == 404) {
-                            msg = 'Requested page not found. [404]';
-                        } else if (jqXHR.status == 500) {
-                            msg = 'Internal Server Error [500].';
-                        } else if (exception === 'parsererror') {
-                            msg = 'Requested JSON parse failed.';
-                        } else if (exception === 'timeout') {
-                            msg = 'Time out error.';
-                        } else if (exception === 'abort') {
-                            msg = 'Ajax request aborted.';
-                        } else {
-                            msg = 'Uncaught Error.\n' + jqXHR.responseJSON.msg;
-                        }
-                        $("#message").html(msg).show();
-                    }).always(function (xhr) {
-                        console.log(xhr);
-                });
-            }
-        });
+        //     if(is_status == 2){
+        //         let arr = { 
+        //             action : 'statusShow',
+        //             fruits_id:fruits_id,
+        //             is_status: is_status,
+        //             fruits_name:fruits_name
+        //         };
+        //         var request = JSON.stringify(arr);
+        //         $.ajax({
+        //                 method: "POST",
+        //                 url: "controller/fruit_cateC.php",
+        //                 data: request,
+        //                 dataType: "JSON",
+        //                 async: false,
+        //                 headers: {
+        //                     "Content-Type": "application/json"
+        //                 },
+        //                 beforeSend: function() {
+        //                     console.log(request);
+        //                 },
+        //             }).done(function (Response) {
+        //                 $('#fruitsName_table').DataTable().ajax.reload();
+        //                 $("#message").html(Response.msg).show();
+        //                 $("#notice").removeClass("d-none");
+        //                 $("#notice").removeClass("hide");
+        //                 $("#notice").addClass("d-block");
+        //                 $("#notice").addClass("show");
+        //             }).fail(function (jqXHR, exception) {
+        //                 var msg = '';
+        //                 if (jqXHR.status === 0) {
+        //                     msg = 'Not connect.\n Verify Network.';
+        //                 } else if (jqXHR.status == 404) {
+        //                     msg = 'Requested page not found. [404]';
+        //                 } else if (jqXHR.status == 500) {
+        //                     msg = 'Internal Server Error [500].';
+        //                 } else if (exception === 'parsererror') {
+        //                     msg = 'Requested JSON parse failed.';
+        //                 } else if (exception === 'timeout') {
+        //                     msg = 'Time out error.';
+        //                 } else if (exception === 'abort') {
+        //                     msg = 'Ajax request aborted.';
+        //                 } else {
+        //                     msg = 'Uncaught Error.\n' + jqXHR.responseJSON.msg;
+        //                 }
+        //                 $("#message").html(msg).show();
+        //             }).always(function (xhr) {
+        //                 console.log(xhr);
+        //         });
+        //     }
+        // });
     });
+    function encodeImagetoBase64(element, base64Id) {
+        console.log('working');
+        var File = element.files[0];
+        var FR = new FileReader();
+        FR.addEventListener("load", function() {
+            $("#" + base64Id).val(FR.result);
+        });
+        FR.readAsDataURL(File);
+    }
 </script>
 <?php include "include/footer.php"; ?>

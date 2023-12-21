@@ -55,6 +55,7 @@ try {
                         $response = [
                             'success' => 1,
                             'code' => 200,
+                            // 'fruits_id' => $fruitsCate->fruits_id,
                             'msg' => 'Categories of Fruit Successfully Deactivate!',
                         ];
 
@@ -89,9 +90,9 @@ try {
                         foreach($results as $res) {                        
                             ++$i;
                             if($res['is_status'] == 1){
-                                $act = "<a class='statusHide cursor-pointer text-danger' ids='Hide_".$res["fruits_id"]."' data-id='".$res["fruits_id"]."' data-fname='".$res['fruits_name']."' data-issts='".$res['is_status']."'><i class='fas fa-eye-slash pasword_show' aria-hidden='true' style='margin-left:15px;'></i></a><a class='statusShow cursor-pointer text-danger' style='display:none;' ids='Show_".$res["fruits_id"]."' data-id='".$res["fruits_id"]."' data-fname='".$res['fruits_name']."' data-issts='".$res['is_status']."'><i class='fas fa-eye pasword_hide' aria-hidden='true' style='margin-left:15px;'></i></a>";
+                                $act = "<a class='statusHide text-danger' style='cursor:pointer;' ids='Hide_".$res["fruits_id"]."' data-id='".$res["fruits_id"]."' data-fname='".$res['fruits_name']."' data-issts='".$res['is_status']."'><i class='fas fa-eye-slash pasword_show' aria-hidden='true' style='margin-left:15px;'></i></a><a class='statusShow text-success' style='display:none; cursor:pointer;' ids='Show_".$res["fruits_id"]."' data-id='".$res["fruits_id"]."' data-fname='".$res['fruits_name']."' data-issts='".$res['is_status']."'><i class='fas fa-eye pasword_hide' aria-hidden='true' style='margin-left:15px;'></i></a>";
                             } else{
-                                $act = "<a class='statusShow cursor-pointer text-danger' ids='Hide_".$res["fruits_id"]."' data-id='".$res["fruits_id"]."' data-fname='".$res['fruits_name']."' data-issts='".$res['is_status']."'><i class='fas fa-eye pasword_hide' aria-hidden='true' style='margin-left:15px;'></i></a><a class='statusHide cursor-pointer text-danger' style='display:none;' ids='Show_".$res["fruits_id"]."' data-id='".$res["fruits_id"]."' data-fname='".$res['fruits_name']."' data-issts='".$res['is_status']."'><i class='fas fa-eye pasword_hide' aria-hidden='true' style='margin-left:15px;'></i></a>";
+                                $act = "<a class='statusShow text-success' style='cursor:pointer;' ids='Hide_".$res["fruits_id"]."' data-id='".$res["fruits_id"]."' data-fname='".$res['fruits_name']."' data-issts='".$res['is_status']."'><i class='fas fa-eye pasword_hide' aria-hidden='true' style='margin-left:15px;'></i></a><a class='statusHide text-danger' style='display:none; cursor:pointer;' ids='Show_".$res["fruits_id"]."' data-id='".$res["fruits_id"]."' data-fname='".$res['fruits_name']."' data-issts='".$res['is_status']."'><i class='fas fa-eye pasword_hide' aria-hidden='true' style='margin-left:15px;'></i></a>";
                             }
                             $result [] = [
                                 "s_no"        => $i,

@@ -64,12 +64,14 @@
 
         <!-- Start Client Table -->
         <div class="card">
-            <div class="alert alert-warning alert-dismissible fade hide d-none" role="alert" id="notice">
-                <p id="message"></p>
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+            <div class="card-header" id="hed">
+                <div class="alert alert-warning alert-dismissible fade hide d-none" role="alert" id="notice">
+                    <p id="message"></p>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>            
             <!-- <div class="col-md-12" id="result"></div> -->
             <!-- /.card-header -->
             <div class="card-body">
@@ -332,6 +334,7 @@
                     }).done(function (Response) {
                         $('#fruitsName_table').DataTable().ajax.reload();
                         $("#message").html(Response.msg).show();
+                        setTimeout(function() { $("#hed").hide(); }, 5000);
                         $("#notice").removeClass("d-none");
                         $("#notice").removeClass("hide");
                         $("#notice").addClass("d-block");
@@ -388,6 +391,7 @@
                     }).done(function (Response) {
                         $('#fruitsName_table').DataTable().ajax.reload();
                         $("#message").html(Response.msg).show();
+                        setTimeout(function() { $("#hed").hide(); }, 5000);
                         $("#notice").removeClass("d-none");
                         $("#notice").removeClass("hide");
                         $("#notice").addClass("d-block");

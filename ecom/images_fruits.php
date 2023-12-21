@@ -62,7 +62,7 @@
                                     <div class="form-group">
                                         <label for="fee">Upload Image</label>
                                         <!-- <input type="hidden" id="imagePath" value=""/> -->
-                                        <input type="file" name="product_images" onchange="encodeImagetoBase64(this, 'image_file_base64')" id="product_images" class="form-control"/>
+                                        <input type="file" name="product_images" multiple onchange="encodeImagetoBase64(this, 'image_file_base64')" id="product_images" class="form-control"/>
                                         <input type="hidden" name="image_file_base64" id="image_file_base64" value="" />
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@
                             <th width='8%'>S.No.</th>
                             <th width='15%'>Fruits Name</th>
                             <th>Image Fruit Name</th>
-                            <th width='12%'>Images</th>
+                            <th width='7%'>Images</th>
                             <th width='7%'>Action</th>
                         </tr>
                     </thead>
@@ -195,7 +195,7 @@
                 { "data": "s_no", "searchable": false, "orderable": false },
                 { "data": "fruits_name"},
                 { "data": "image_name"},
-                { "data": "product_images"},
+                { "data": "product_images", "searchable": false, "orderable": false},
                 { "data": "action", "searchable": false, "orderable": false },
             ]
         }).buttons().container().appendTo('#fruitsName_table_wrapper .col-md-6:eq(0)');
@@ -218,6 +218,7 @@
             $("#fruits_id-error").hide();
             $("#image_name-error").hide();
             $("#msg").hide();
+            // $('#images_fruit_form').trigger("reset");
         });
         $.validator.setDefaults({
             submitHandler: function(e) {
@@ -251,8 +252,8 @@
                         console.log(request);
                     },
                 }).done(function(Response) {
-                    $("#lawyer_advisory_modal").modal('hide');
-                    $('#lawyer_advisory_table').DataTable().ajax.reload();
+                    $("#images_fruit_modal").modal('hide');
+                    $('#imagesFruit_table').DataTable().ajax.reload();
                     $("#message").html(Response.msg).show();
                     $("#notice").removeClass("d-none");
                     $("#notice").removeClass("hide");

@@ -10,6 +10,7 @@ try {
             if(isset($request) && !empty($request)) {
                 if(isset($request->action)) {
                     $pdrctImg = new PductImage();
+                    $pdrctImg->conn->beginTransaction();
                     @session_start();
                     $user_id = $_SESSION["c_x_user_id"];
                     if($request->action=='add') {
@@ -19,13 +20,12 @@ try {
                         if ($pdrctImg->insert()) {
                             $pduct_image_id = $pdrctImg->last_insert_id();
                             if (isset($request->image_file_base64) && $request->image_file_base64 != '') {
-                                $file_name = $pduct_image_id . '_' . date('YmdHis');
+                                $file_name = $pdrctImg->image_name. '_' . date('YmdHis').'-'.$pduct_image_id;
                                 if (createFileFromBase64AllExtn($request->image_file_base64, "../upload_images/", $file_name)) {
                                     $pdrctImg->pduct_image_id = $pduct_image_id;
                                     $pdrctImg->product_images = $file_name . '.' . get_string_between($request->image_file_base64, '/', ';base64');
                                     $pdrctImg->updated_by = $user_id;
                                     if ($pdrctImg->update_bill_path()) {
-                                        // print_r($pdrctImg);exit;
                                         $response = [
                                             'success' => 1,
                                             'code' => 200,
@@ -122,32 +122,17 @@ try {
                         // print_r($results);exit;
                         foreach($results as $res) {
                             ++$i;
-                            // $pductImgs = '<button type="button" style="margin-left: 41px;" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-                            //     <i class="fas fa-folder-open" style="font-size:25px;"></i>
-                            //     </button>
-                            //     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            //         <div class="modal-dialog modal-dialog-centered" role="document">
-                            //             <div class="modal-content">
-                            //             <div class="modal-header">
-                            //                 <h5 class="modal-title" id="exampleModalLongTitle">Images</h5>
-                            //                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            //                 <span aria-hidden="true">&times;</span>
-                            //                 </button>
-                            //             </div>
-                            //             <div class="modal-body">'.$res["product_images"].'</div>
-                            //             <div class="modal-footer">
-                            //                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            //             </div>
-                            //             </div>
-                            //         </div>
-                            //     </div>';
+
+                            if(file_exists('../upload_images/'.$res['product_images']) && !empty($res['product_images'])){
+                                $pductImgs = "<a style='cursor:pointer;' href='../ecom/upload_images/".$res['product_images']."' target='_blank' class='text-warning'><i class='fas fa-images' aria-hidden='true'></i></a>";
+                            }
                             
                             $result [] = [
                                 "s_no"        => $i,
                                 'pduct_image_id' => $res['pduct_image_id'],
                                 "fruits_name"    => $res['fruits_name'],
                                 'image_name'     => $res['image_name'],
-                                "product_images" => $res["product_images"],
+                                "product_images" => $pductImgs,
                                 "action"         => "<a class='edit cursor-pointer' data-id='".$res['pduct_image_id']."' data-fname='".$res['image_name']."'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>&nbsp;&nbsp;&nbsp;<a class='delete cursor-pointer text-danger' data-id='".$res['pduct_image_id']."'><i class='fa fa-trash' aria-hidden='true'></i></a>",
                             ];
                         }

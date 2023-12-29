@@ -23,10 +23,10 @@
 
 
         <!-- Customized Bootstrap Stylesheet -->
-        <link href="themecss/bootstrap.min.css" rel="stylesheet">
+        <link href="theme/css/bootstrap.min.css" rel="stylesheet">
 
         <!-- Template Stylesheet -->
-        <link href="themecss/style.css" rel="stylesheet">
+        <link href="theme/css/style.css" rel="stylesheet">
     </head>
 
     <body>

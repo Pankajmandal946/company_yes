@@ -65,6 +65,7 @@
         <!-- Start Client Table -->
         <div class="card">
             <div class="card-header" id="hed">
+                <input type="hidden" name="fruitsID" id="fruitsID" value="">
                 <div class="alert alert-warning alert-dismissible fade hide d-none" role="alert" id="notice">
                     <p id="message"></p>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -334,7 +335,8 @@
                     }).done(function (Response) {
                         $('#fruitsName_table').DataTable().ajax.reload();
                         $("#message").html(Response.msg).show();
-                        setTimeout(function() { $("#hed").hide(); }, 5000);
+                        $("#fruitsID").html(Response.fruits_id).val();
+                        // setTimeout(function() { $("#hed"+"#fruitsID").hide(); }, 5000);
                         $("#notice").removeClass("d-none");
                         $("#notice").removeClass("hide");
                         $("#notice").addClass("d-block");
@@ -391,7 +393,7 @@
                     }).done(function (Response) {
                         $('#fruitsName_table').DataTable().ajax.reload();
                         $("#message").html(Response.msg).show();
-                        setTimeout(function() { $("#hed").hide(); }, 5000);
+                        // setTimeout(function() { $("#hed").hide(); }, 5000);
                         $("#notice").removeClass("d-none");
                         $("#notice").removeClass("hide");
                         $("#notice").addClass("d-block");

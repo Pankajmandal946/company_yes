@@ -60,7 +60,7 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-group">
-                                        <label for="fee">Upload Image</label>
+                                        <label for="fee">Upload Image<span class="must">*</span></label>
                                         <!-- <input type="hidden" id="imagePath" value=""/> -->
                                         <input type="file" name="product_images" multiple onchange="encodeImagetoBase64(this, 'image_file_base64')" id="product_images" class="form-control"/>
                                         <input type="hidden" name="image_file_base64" id="image_file_base64" value="" />
@@ -289,15 +289,25 @@
                     required: true,
                     minlength: 3
                 },
-               
+                fruits_id: {
+                    required: true,
+                    min: 1
+                },
+                product_images: {
+                    required: true
+                },
             },
             messages: {
                 image_name: {
                     required: "Please enter a Fruits Names",
                     minlength: "Fruits Names must be at least 3 characters long"
                 },
-                
-
+                fruits_id: {
+                    required: "Please Select Fruits Names"
+                },
+                product_images: {
+                    required: "Please Upload File In JPG,JPEG,PNG or PDF Are Allow.!"
+                },
             },
             errorElement: 'span',
             errorPlacement: function (error, element) {

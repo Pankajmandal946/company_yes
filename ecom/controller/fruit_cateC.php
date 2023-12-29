@@ -55,7 +55,7 @@ try {
                         $response = [
                             'success' => 1,
                             'code' => 200,
-                            // 'fruits_id' => $fruitsCate->fruits_id,
+                            'fruits_id' => $fruitsCate->fruits_id,
                             'msg' => 'Categories of Fruit Successfully Deactivate!',
                         ];
 

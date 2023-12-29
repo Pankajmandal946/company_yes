@@ -1,7 +1,7 @@
 
 <?php
-  include "include/header.php";
-  include "include/navbar.php";
+    include "include/header.php";
+    include "include/navbar.php";   
 ?>
 <!-- Hero Start -->
 <div class="container-fluid py-5 mb-5 hero-header">

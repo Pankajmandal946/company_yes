@@ -84,14 +84,14 @@ class Register{
                 $stmt->closeCursor();
 
                 session_start();
-                $_SESSION["customerUser_session_status"] = true;
-                // $_SESSION["customerUser_user_id"] = $row['user_id'];
-                $_SESSION["customerUser_user_login_id"] = $row['register_login_id'];
-                $_SESSION["customerUser_name"] = $row['register_name'];
-                $_SESSION["customerUser_email_id"] = $row['register_email_id'];
-                // $_SESSION["customerUser_mobile_no"] = $row['mobile_no'];
-                // $_SESSION["customerUser_user_type"] = $row['user_type'];
-                // $_SESSION["customerUser_username"] = $row['username'];
+                $_SESSION["register_session_status"] = true;
+                // $_SESSION["register_user_id"] = $row['user_id'];
+                $_SESSION["register_loginId"] = $row['register_login_id'];
+                $_SESSION["register_name"] = $row['register_name'];
+                $_SESSION["register_email_id"] = $row['register_email_id'];
+                // $_SESSION["register_mobile_no"] = $row['mobile_no'];
+                // $_SESSION["register_user_type"] = $row['user_type'];
+                // $_SESSION["register_username"] = $row['username'];
                 // print_r($_SESSION);exit;
                 return true;
             } else {

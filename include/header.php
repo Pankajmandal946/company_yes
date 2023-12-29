@@ -1,3 +1,12 @@
+<?php
+        session_start();
+        // if (!isset($_SESSION['register_name'])) {
+        //     header("Location:login.php");
+        // }
+        // if (!isset($_SESSION['register_loginId'])) {
+        //     header("Location:login.php");
+        // }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,6 +25,11 @@
         <!-- Icon Font Stylesheet -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="theme/plugins/fontawesome-free/css/all.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
         <!-- Libraries Stylesheet -->
         <link href="theme/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
@@ -27,6 +41,7 @@
 
         <!-- Template Stylesheet -->
         <link href="theme/css/style.css" rel="stylesheet">
+        <link href="theme/css/costum.css" rel="stylesheet">
     </head>
 
     <body>

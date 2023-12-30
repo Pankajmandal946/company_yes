@@ -52,6 +52,6 @@
             header("location: home.php");
             die;
         }
-        print_r($_SESSION);exit;
+        // print_r($_SESSION);exit;
 
         ?>

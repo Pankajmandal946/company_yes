@@ -26,7 +26,8 @@
                     <a href="index.php" class="nav-item nav-link active">Home</a>
                     <a href="shop.php" class="nav-item nav-link">Shop</a>
                     <a href="shop_detail.php" class="nav-item nav-link">Shop Detail</a>
-                    <div class="nav-item dropdown">
+                    <!-- <a href="testimonial.php" class="nav-item nav-link">Testimonial</a> -->
+                    <!-- <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                         <div class="dropdown-menu m-0 bg-secondary rounded-0">
                             <a href="cart.php" class="dropdown-item">Cart</a>
@@ -34,7 +35,7 @@
                             <a href="testimonial.php" class="dropdown-item">Testimonial</a>
                             <a href="404.php" class="dropdown-item">404 Page</a>
                         </div>
-                    </div>
+                    </div> -->
                     <a href="contact.php" class="nav-item nav-link">Contact</a>
                 </div>
                 <div class="d-flex m-3 me-0">
@@ -47,13 +48,12 @@
                         <i class="fa fa-shopping-bag fa-2x"></i>                        
                         <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">3</span>
                     </a>
-                    <a href="login.php" class="log">
+                    <?php if(isset($_SESSION['register_loginId'])){ ?>
+                    <button class="btn-view btn btn-md-square bg-white me-4" data-bs-toggle="modal" data-bs-target="#viewModal"><i class="fa fa-user-circle-o fa-2x"></i></button>
+                    <?php } else { ?>
+                        <a href="login.php" class="log">
                         <button class="btn-view btn btn-md-square bg-white me-4"><i class="fa fa-user-circle-o fa-2x"></i></button>
                     </a>
-                    <?php if($_SESSION["register_loginId"] != 0 && $_SESSION["register_loginId"] != ""){ ?>
-                    <button class="btn-view btn btn-md-square bg-white me-4" data-bs-toggle="modal" data-bs-target="#viewModal"><i class="fa fa-user-circle-o fa-2x"></i></button>
-                    <?php } else{ ?>
-                    <!-- not completed -->
                     <?php }?>
                 </div>
             </div>

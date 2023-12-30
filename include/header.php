@@ -1,11 +1,5 @@
 <?php
-        session_start();
-        // if (!isset($_SESSION['register_name'])) {
-        //     header("Location:login.php");
-        // }
-        // if (!isset($_SESSION['register_loginId'])) {
-        //     header("Location:login.php");
-        // }
+    session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">

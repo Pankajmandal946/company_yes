@@ -38,13 +38,13 @@ $statement->closeCursor();
                 <div class="col-md-11 col-md-offset-3">
                     <div class="row" style="border:2px solid #333546; padding-bottom: 10px; padding-top: 10px; background-color: #cdd7b4; border-radius: 15px 50px 30px 5px;">
                         <div style="margin: 10px;" class="col-md-3 col-xs-3">
-                            <img src="images/user/<?php echo (file_exists("images/user/" . strtolower(substr($_SESSION['hryS_name'], 0, 1)) . ".png")) ? strtolower(substr($_SESSION['hryS_name'], 0, 1)) : 'def' ?>.png" style="width:90%; box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75); margin-top: 30px;" class="img-circle" />
+                            <img src="theme/img/user/<?php echo (file_exists("theme/img/user/" . strtolower(substr($_SESSION['c_x_name'], 0, 1)) . ".png")) ? strtolower(substr($_SESSION['c_x_name'], 0, 1)) : 'def' ?>.png" style="width:90%; box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75); margin-top: 30px;" class="img-circle" />
                         </div>
                         <div style="background-color: #a1c5a9;" class="col-md-8 col-xs-8">
                             <table class="table table-condensed">
                                 <tr>
                                     <!-- <td><b>Emp Code:</b> </td> -->
-                                    <td><b>Name:</b> &nbsp;<?= ucfirst($result['name']) ?></td>
+                                    <td colspan="2"><b>Name:</b> &nbsp;<?= ucfirst($result['name']) ?></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><b>Company Name:</b> &nbsp;<?= $result['company_name'] ?></td>
@@ -101,12 +101,12 @@ $statement->closeCursor();
         display: block;
     }
 </style>
-<script src="http://code.jquery.com/jquery-migrate-1.1.0.js"></script>
-<?php include "include/footer_js.php"; ?>
+<script src="theme/js/jquery-1.9.0.min.js"></script>
+<?php include "include/footerJs.php"; ?>
 <script>
-    // $(document).ready(function() {
+    $(document).ready(function() {
 
-    // });
+    });
 </script>
 <script>
     function AddReadMore() {
@@ -137,28 +137,28 @@ $statement->closeCursor();
             $(this).closest(".addReadMore").toggleClass("showlesscontent showmorecontent");
         });
     }
-    // $(function() {
-    //     //Calling function after Page Load
-    //     AddReadMore();
-    // });
+    $(function() {
+        //Calling function after Page Load
+        AddReadMore();
+    });
 </script>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap.min.css" />
-<!-- <script src="theme/js/model-js.js"></script>
+<script src="theme/js/model-js.js"></script>
 <script src="theme/js/jquery.min.js"></script>
 <script src="theme/js/bootstrap.min.js"></script>
-<script src="theme/js/bootstrap-datetimepicker.min.js"></script> -->
+<script src="theme/js/bootstrap-datetimepicker.min.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap.min.js"></script>
 <script>
-    // $(document).ready(function() {
-    //     $('#datatable').DataTable({
-    //         "ordering": false,
-    //         "lengthChange": false
-    //     });
-    // });
+    $(document).ready(function() {
+        $('#datatable').DataTable({
+            "ordering": false,
+            "lengthChange": false
+        });
+    });
 </script>
 <!-- <script>
     $(document).ready(function() {

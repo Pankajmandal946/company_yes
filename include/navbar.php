@@ -96,10 +96,10 @@
                 </span>
                     <!-- <i class="fa fa-user-circle-o profle"></i> -->
                     <span class="dropdown-item text-center">
-                        <p><b>Admin</b></p>
+                        <p><b><?php echo ucfirst($_SESSION['register_name']) ?></b></p>
                     </span>
                     <span class="d-flex justify-content-between">
-                        <a href="#" class="btn btn-sm btn-info m-2">Profile</a>
+                        <a href="#"><button class="btn btn-sm btn-info m-2" data-bs-toggle="modal" data-bs-target="#profileModal">Profile</button></a>
                         <a href="#" class="btn btn-sm btn-warning w-100 m-2">Change Password</a>
                     </span>
                     <span class="d-flex justify-content-center">
@@ -111,3 +111,33 @@
     </div>
 </div>
 <!-- Modal View End -->
+
+<!-- Modal Profile Start -->
+<div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content rounded-0">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body d-flex align-items-center">
+                <img src="theme/img/user/<?php echo (file_exists("theme/img/user/" . strtolower(substr($_SESSION['register_name'], 0, 1)) . ".png")) ? strtolower(substr($_SESSION['register_name'], 0, 1)) : 'def' ?>.png" style="width:10%; box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75); margin-top: 30px; border-radius: 50%; margin-left: 335px;"/>
+                <!-- <div class="input-group w-75 mx-auto d-flex">
+                    <span class="dropdown-item text-center ">
+                        <i class="fa fa-user-circle-o" style="font-size:50px;"></i>
+                    </span>
+                    <span class="dropdown-item text-center">
+                        <p><b><?php echo ucfirst($_SESSION['register_name']) ?></b></p>
+                    </span>
+                    <span class="d-flex justify-content-between">
+                        <a href="#" class="btn btn-sm btn-info m-2"><button class="btn-view btn btn-md-square bg-white me-4" data-bs-toggle="modal" data-bs-target="#viewModal">Profile</button></a>
+                        <a href="#" class="btn btn-sm btn-warning w-100 m-2">Change Password</a>
+                    </span>
+                    <span class="d-flex justify-content-center">
+                        <a href="logout.php" class="btn btn-sm btn-danger w-100 m-2" style="width:cover;">Log Out</a>
+                    </span>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Profile End -->

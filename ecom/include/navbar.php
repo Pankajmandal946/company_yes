@@ -50,7 +50,7 @@
                     <p><?php echo ucfirst($_SESSION['c_x_user_type']); ?></p>
                 </span>
                 <span class="d-flex justify-content-between">
-                    <a href="#" class="btn btn-sm btn-info w-100 m-2">Profile</a>
+                    <a href="profile.php" class="btn btn-sm btn-info w-100 m-2">Profile</a>
                     <a href="modify_password.php" class="btn btn-sm btn-warning w-100 m-2">Change Password</a>
                 </span>
                 <span class="d-flex justify-content-center">

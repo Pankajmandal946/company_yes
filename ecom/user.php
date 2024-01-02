@@ -69,6 +69,12 @@ include "include/header.php";
                                 </div>
                                 <div class="col">
                                     <div class="form-group">
+                                        <label for="name">Company Name :</label>
+                                        <textarea name="company_name" id="company_name" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-group">
                                         <label for="name">Pincode :</label>
                                         <input type="text" name="pincode" id="pincode" class="form-control">
                                     </div>
@@ -326,6 +332,7 @@ include "include/header.php";
                     }
                     $("#father_name").val(value.father_name);
                     $("#address").val(value.address);
+                    $("#company_name").val(value.company_name);
                     if (value.pincode != 0) {
                         $("#pincode").val(value.pincode);
                     } else {
@@ -415,6 +422,7 @@ include "include/header.php";
             let user_type_id = $("#user_type_id");
             let father_name = $("#father_name");
             let address = $("#address");
+            let company_name = $("#company_name");
             let pincode = $("#pincode");
 
             let name_error = $("#name-error");
@@ -446,6 +454,7 @@ include "include/header.php";
             $("#user_type_id").val("");
             $("#father_name").val("");
             $("#address").val("");
+            $("#company_name").val("");
             $("#pincode").val("");
             $("#user_type_id").val("").prop('disabled', false);
             $('#user_from').trigger("reset");
@@ -468,6 +477,7 @@ include "include/header.php";
                 }
                 let father_name = $.trim($("#father_name").val());
                 let address = $.trim($("textarea#address").val());
+                let company_name = $.trim($("textarea#company_name").val());
                 let pincode = $.trim($("#pincode").val());
                 if (user_id > 0) {
                     action = 'update';
@@ -484,6 +494,7 @@ include "include/header.php";
                     password: password,
                     father_name: father_name,
                     address: address,
+                    company_name: company_name,
                     pincode: pincode
                 };
                 var request = JSON.stringify(arr);

@@ -29,7 +29,7 @@
 
         <form method="post">
           <div class="input-group mb-3">
-            <input type="text" id="user_email_id" class="form-control" placeholder="user_email_id">
+            <input type="text" id="user_email_id" class="form-control" placeholder="Email ID">
           </div>
           <div class="input-group mb-3">
             <input type="password" id="password" class="form-control" placeholder="Password">
@@ -70,12 +70,12 @@
         e.preventDefault();
         var user_email_id = $.trim($("#user_email_id").val());
         if (user_email_id == "") {
-          alert('Please enter your user_email_id');
+          alert('Please enter your Email Id');
           $("#user_email_id").focus();
           return false;
         }
         var password = $.trim($("#password").val());
-        if (user_email_id == "") {
+        if (password == "") {
           alert('Please enter your password');
           $("#password").focus();
           return false;

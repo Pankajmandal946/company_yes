@@ -10,7 +10,7 @@ require 'config/DBConnection.php';
 $conn = new DBConnection();
 $connection = $conn->connect();
 $userId = $_SESSION['c_x_user_id'];
-$statement = $connection->prepare("select u.name,u.company_name,u.email_id,ut.user_type,
+$statement = $connection->prepare("select u.name,u.company_name,u.address,u.email_id,ut.user_type,
 u.user_type_id,u.mobile_no,u2.name as created_by,u.created_on from user u
 LEFT OUTER JOIN user u2 ON u.created_by=u2.user_id
 LEFT JOIN user_type ut ON u.user_type_id = ut.user_type_id
@@ -48,6 +48,9 @@ $statement->closeCursor();
                                 </tr>
                                 <tr>
                                     <td colspan="2"><b>Company Name:</b> &nbsp;<?= $result['company_name'] ?></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2"><b>Address:</b> &nbsp;<?= $result['address'] ?></td>
                                 </tr>
                                 <tr>
                                     <td colspan="2"><b>Email:</b> &nbsp;<?= ucfirst($result['email_id']) ?></td>

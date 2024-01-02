@@ -1,7 +1,7 @@
 <?php require_once '../config/DBConnection.php';
 
 class User{
-    public $table_name,$user_id, $name, $email_id, $mobile_no, $user_type_id,$father_name,$address,$pincode, $login_access, $is_active, $created_by,$created_on, $updated_by, $updated_on, $db, $conn;
+    public $table_name,$user_id, $name, $email_id, $mobile_no, $user_type_id,$father_name,$address,$company_name,$pincode, $login_access, $is_active, $created_by,$created_on, $updated_by, $updated_on, $db, $conn;
     function __construct(){
         $this->user_id = 0;
         $this->name = "";
@@ -10,6 +10,7 @@ class User{
         $this->user_type_id = 0;
         $this->father_name = "";
         $this->address = "";
+        $this->company_name = "";
         $this->pincode = 0;
         $this->login_access = 0;
         $this->is_active = 1;
@@ -28,12 +29,13 @@ class User{
             'user_type_id'          => $this->user_type_id,
             'father_name'           => $this->father_name,
             'address'               => $this->address,
+            'company_name'          => $this->company_name,
             'pincode'               => $this->pincode,
             'login_access'          => $this->login_access,
             'is_active'             => $this->is_active,
             'created_by'            => $this->created_by
         ];
-        $sql = "INSERT INTO ".$this->table_name."(name, email_id, mobile_no, user_type_id, login_access, is_active,father_name,address,pincode, created_by) VALUES (:name, :email_id, :mobile_no, :user_type_id, :login_access, :is_active, :father_name,:address,:pincode, :created_by)";
+        $sql = "INSERT INTO ".$this->table_name."(name, email_id, mobile_no, user_type_id, login_access, is_active,father_name,address,company_name,pincode, created_by) VALUES (:name, :email_id, :mobile_no, :user_type_id, :login_access, :is_active, :father_name,:address,:company_name,:pincode, :created_by)";
         $stmt= $this->conn->prepare($sql);
         $stmt->execute($data);
         $this->user_id = $this->conn->lastInsertId();
@@ -51,12 +53,13 @@ class User{
             'user_type_id'          => $this->user_type_id,
             'father_name'           => $this->father_name,
             'address'               => $this->address,
+            'company_name'          => $this->company_name,
             'pincode'               => $this->pincode,
             'login_access'          => $this->login_access,
             'is_active'             => $this->is_active,
             'updated_by'            => $this->updated_by,
         ];
-        $sql = "UPDATE ".$this->table_name." SET name=:name, email_id=:email_id, mobile_no=:mobile_no, user_type_id=:user_type_id, father_name=:father_name, address=:address, pincode=:pincode, login_access=:login_access, is_active=:is_active, updated_by=:updated_by WHERE user_id=:user_id";
+        $sql = "UPDATE ".$this->table_name." SET name=:name, email_id=:email_id, mobile_no=:mobile_no, user_type_id=:user_type_id, father_name=:father_name, address=:address, company_name=:company_name, pincode=:pincode, login_access=:login_access, is_active=:is_active, updated_by=:updated_by WHERE user_id=:user_id";
         $stmt= $this->conn->prepare($sql);
         $stmt->execute($data);
         $stmt->closeCursor();
@@ -83,7 +86,7 @@ class User{
             'is_active' => 2
         ];
         if(!empty($Request)){
-            $query = "SELECT u.user_id, u.name, u.email_id, u.mobile_no, u.father_name,u.address,u.pincode,u.user_type_id, u.login_access, ut.user_type, ul.username FROM ".$this->table_name." u 
+            $query = "SELECT u.user_id, u.name, u.email_id, u.mobile_no, u.father_name,u.address,u.company_name,u.pincode,u.user_type_id, u.login_access, ut.user_type, ul.username FROM ".$this->table_name." u 
             INNER JOIN user_type ut ON (u.user_type_id=ut.user_type_id)
             LEFT JOIN user_login ul ON (u.user_id=ul.user_id) WHERE u.is_active < :is_active";  
 
@@ -111,12 +114,12 @@ class User{
                 $data = [
                     'user_id' => $this->user_id
                 ];
-                $query = "SELECT u.user_id, u.name, u.email_id, u.mobile_no, u.father_name, u.user_designation_id,u.address,u.pincode,u.user_type_id, u.login_access, ut.user_type, ul.username,ud.user_designation FROM ".$this->table_name." u 
+                $query = "SELECT u.user_id, u.name, u.email_id, u.mobile_no, u.father_name, u.user_designation_id,u.address,u.company_name,u.pincode,u.user_type_id, u.login_access, ut.user_type, ul.username,ud.user_designation FROM ".$this->table_name." u 
                 INNER JOIN user_type ut ON (u.user_type_id=ut.user_type_id)
                 LEFT JOIN user_designation ud ON (u.user_designation_id=ud.user_designation_id)
                 LEFT JOIN user_login ul ON (u.user_id=ul.user_id) WHERE user_id = :user_id";
             } else {
-                $query = "SELECT u.user_id, u.name, u.email_id, u.mobile_no, u.father_name, u.user_designation_id,u.address,u.pincode,u.user_type_id, u.login_access, ut.user_type, ul.username,ud.user_designation FROM ".$this->table_name." u 
+                $query = "SELECT u.user_id, u.name, u.email_id, u.mobile_no, u.father_name, u.user_designation_id,u.address,u.company_name,u.pincode,u.user_type_id, u.login_access, ut.user_type, ul.username,ud.user_designation FROM ".$this->table_name." u 
                 INNER JOIN user_type ut ON (u.user_type_id=ut.user_type_id)
                 LEFT JOIN user_designation ud ON (u.user_designation_id=ud.user_designation_id)
                 LEFT JOIN user_login ul ON (u.user_id=ul.user_id) WHERE u.is_active < :is_active";
@@ -124,7 +127,7 @@ class User{
             if($this->user_type_id>0) {
                 $data['user_type_id']   = $this->user_type_id;
                 $data['is_active']      = 1;
-                $query = "SELECT u.user_id, u.name, u.email_id, u.mobile_no, u.father_name, u.user_designation_id,u.address,u.pincode,u.user_type_id, u.login_access, ut.user_type, ul.username,ud.user_designation FROM ".$this->table_name." u 
+                $query = "SELECT u.user_id, u.name, u.email_id, u.mobile_no, u.father_name, u.user_designation_id,u.address,u.company_name,u.pincode,u.user_type_id, u.login_access, ut.user_type, ul.username,ud.user_designation FROM ".$this->table_name." u 
                 INNER JOIN user_type ut ON (u.user_type_id=ut.user_type_id)
                 LEFT JOIN user_designation ud ON (u.user_designation_id=ud.user_designation_id)
                 LEFT JOIN user_login ul ON (u.user_id=ul.user_id) WHERE u.is_active = :is_active AND u.user_type_id=:user_type_id";
@@ -152,6 +155,7 @@ class User{
                     'user_type'             => $row['user_type'],
                     'father_name'           => $row['father_name'],
                     'address'               => $row['address'],
+                    'company_name'               => $row['company_name'],
                     'pincode'               => $row['pincode']
                 ];
             }

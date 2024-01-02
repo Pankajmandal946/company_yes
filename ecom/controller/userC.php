@@ -22,6 +22,7 @@ try {
                         $user->user_type_id = $request->user_type_id;
                         $user->father_name = $request->father_name;
                         $user->address = $request->address;
+                        $user->company_name = $request->company_name;
                         if(isset($request->pincode) && !empty($request->pincode)){
                             $user->pincode = $request->pincode;
                         }
@@ -73,6 +74,7 @@ try {
                         $user->user_type_id = $request->user_type_id;
                         $user->father_name = $request->father_name;
                         $user->address = $request->address;
+                        $user->company_name = $request->company_name;
                         if(isset($request->pincode) && !empty($request->pincode)){
                             $user->pincode = $request->pincode;
                         }
@@ -164,6 +166,7 @@ try {
                                 'user_type'             => $res['user_type'],
                                 'father_name'           => $res['father_name'],
                                 'address'               => $res['address'],
+                                'company_name'          => $res['company_name'],
                                 'pincode'               => $res['pincode'],
                                 'action'                => "<a class='edit cursor-pointer' data-id='".$res['user_id']."'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>&nbsp;&nbsp;&nbsp;<a class='delete cursor-pointer text-danger' data-id='".$res['user_id']."'><i class='fa fa-trash' aria-hidden='true'></i></a>"
                             ];
